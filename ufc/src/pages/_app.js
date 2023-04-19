@@ -1,6 +1,6 @@
 import "@component/styles/globals.css";
 import Header from "../../Components/Header/Header";
-import Map from "../../Components/Globe/Map";
+import Map from "../../Components/Map/Map";
 import { SWRConfig } from "swr";
 
 
@@ -23,3 +23,6 @@ export default function App({ Component, pageProps }) {
         </div>
     );
 }
+
+/*<Header />
+                <Map />*/
