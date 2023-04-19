@@ -1,5 +1,5 @@
 import "@component/styles/globals.css";
-import Header from "../../Components/Header/Header";
+import SearchBar  from "../../Components/SearchBar/SearchBar";
 import Map from "../../Components/Map/Map";
 import { SWRConfig } from "swr";
 
@@ -17,12 +17,10 @@ export default function App({ Component, pageProps }) {
         >
             <SWRConfig value={{ fetcher }}>
                 <Component {...pageProps} />
-                <Header />
+           <SearchBar/> 
                 <Map />
             </SWRConfig>
         </div>
     );
 }
 
-/*<Header />
-                <Map />*/

@@ -74,22 +74,7 @@ const Map = () => {
                     height: "700px",
                 }}
             >
-                <div
-                    style={{
-                        position: "absolute",
-                        bottom: 0,
-                        left: 0,
-                        zIndex: 1,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        backgroundColor: "white",
-                        padding: "10px",
-                    }}
-                >
-                    <h3>Fighter Card</h3>
-                    <p>Fight</p>
-                </div>
+                
                 <div
                     id="map"
                     style={{
