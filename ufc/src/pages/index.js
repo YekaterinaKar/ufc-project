@@ -1,8 +1,14 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import React from "react";
 
-
-
-export default function Home() {
-  
+function Home() {
+    return (
+    <>
+      
+        
+        
+        
+      </>)
 }
+
+export default Home;
+//https://codesandbox.io/s/p5lwvkp7x?file=/package.json
