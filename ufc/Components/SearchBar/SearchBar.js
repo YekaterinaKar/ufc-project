@@ -17,13 +17,13 @@ export default function SearchBar() {
                     fontSize: "18px",
                     width: "400px",
                     marginRight: "10px",
-                    backgroundColor: "papayawhip",
+                    backgroundColor: "rgb(204, 228, 247)",
                 }}
                 type="text"
             />
             <button
                 style={{
-                    backgroundColor: "papayawhip",
+                    backgroundColor: "rgb(204, 228, 247)",
                     border: "none",
                     borderRadius: "20px",
                     cursor: "pointer",
@@ -32,7 +32,12 @@ export default function SearchBar() {
                 }}
                 type="submit"
             >
-                <Image src="/s.png" alt="magnifying glass" width={45} height={45} />
+                <Image
+                    src="/s.png"
+                    alt="magnifying glass"
+                    width={45}
+                    height={45}
+                />
             </button>
         </form>
     );
