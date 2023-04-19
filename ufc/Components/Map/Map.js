@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useEffect } from "react";
 import Script from "next/script";
 import mapboxgl from "mapbox-gl";
+//import Fighter from "@component/db/models/Fighter";
 
 const Map = () => {
     useEffect(() => {
@@ -87,6 +88,7 @@ const Map = () => {
                     }}
                 >
                     <h3>Fighter Card</h3>
+                    <p>Fight</p>
                 </div>
                 <div
                     id="map"

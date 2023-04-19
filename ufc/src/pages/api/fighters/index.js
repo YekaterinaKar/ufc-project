@@ -1,5 +1,5 @@
-import dbConnect from "../../../db/connect";
-import Fighter from "../../../db/models/Fighter";
+import Fighter from "./../../../../db/models/Fighter.js";
+import dbConnect from "./../../../../db/Connect.js";
 
 export default async function handler(request, response) {
     await dbConnect();
