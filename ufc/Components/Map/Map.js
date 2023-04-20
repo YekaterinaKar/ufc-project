@@ -36,14 +36,21 @@ const Map = () => {
             map.setLayoutProperty("country-label", "visibility", "none");
         });
 
-        
         const coordinatesArray = fighterLocations.map(
             (fighter) => fighter.coordinates
         );
         console.log(coordinatesArray);
 
         coordinatesArray.forEach((coordinates) => {
-            new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+            const marker = new mapboxgl.Marker({ color: "yellow" })
+                .setLngLat(coordinates)
+                .addTo(map);
+
+            const popup = new mapboxgl.Popup({ offset: 25 })
+                .setHTML(`<h3>Fighter</h3>`)
+                .setMaxWidth("300px");
+
+            marker.setPopup(popup);
         });
     }, [fighterLocations]);
 
