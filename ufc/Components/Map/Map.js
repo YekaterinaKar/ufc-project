@@ -1,10 +1,25 @@
 import Head from "next/head";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Script from "next/script";
 import mapboxgl from "mapbox-gl";
-//import Fighter from "@component/db/models/Fighter";
 
 const Map = () => {
+    const [fighterLocations, setFighterLocations] = useState([]);
+
+    useEffect(() => {
+        const fetchFighterLocations = async () => {
+            try {
+                const response = await fetch("api/fighters");
+                const data = await response.json();
+                setFighterLocations(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchFighterLocations();
+    }, []);
+
     useEffect(() => {
         mapboxgl.accessToken =
             "pk.eyJ1IjoieWVrYXRlcmluYWthciIsImEiOiJjbGdtOGN4ajYwM2JkM2ZvZXVmNDhuY3Q2In0.ll321VCFIp0yuT7np-GEnA";
@@ -12,44 +27,25 @@ const Map = () => {
             container: "map",
             style: "mapbox://styles/mapbox/satellite-streets-v11",
             zoom: 1.5,
-            minZoom: 1.5, // limit the maximum zoom level
+            minZoom: 1.5,
             center: [63.4, 48.0],
             projection: "globe",
         });
 
         map.on("load", () => {
-            // Disable the label layer
             map.setLayoutProperty("country-label", "visibility", "none");
-
-            // Set the default atmosphere style
-            // map.setFog({});
-
-           
         });
 
-        const markerLocations = [
-            [-46.6333, -23.5505], // São Paulo / Amanda Nunes
-            [-38.5023, -3.7319], // Fortaleza /Taila Santos
-            [-49.2768, -25.4284], // Curitiba/ Marina Rodriguez
-            [-34.8811, -8.0539], // Recife/ Amanda Lemos
-            [-60.6731, -3.119], // Manaus / Jessica Andrade
-            [-122.4194, 37.7749], // San Francisco, CA / Raquel Pennington
-            [-118.2437, 34.0522], // Los Angeles, CA/ Juliana Pena
-            [-77.0369, 38.9072], // Washington D.C./ Erin Blanchfield
-            [-87.6298, 41.8781], // Chicago, IL / Carla Esparza
-            [-95.3698, 29.7604], // Houston, TX / Holly Holm
-            [-71.0589, 42.3601], // Boston, MA / Rose Namajunas
-            [116.4074, 39.9042], // Beijing, China / Zhang Weili
-            [74.7661, 41.2044], // Bishkek, Kyrgyzstan / Valentina Shevchenko
-            [2.3522, 48.8566], // Paris, France / Manon Fiorot
-            [-99.1332, 19.4326], // Mexico City, Mexico / Alexa Grasso
-        ];
+        
+        const coordinatesArray = fighterLocations.map(
+            (fighter) => fighter.coordinates
+        );
+        console.log(coordinatesArray);
 
-        markerLocations.forEach((location) => {
-            new mapboxgl.Marker().setLngLat(location).addTo(map);
+        coordinatesArray.forEach((coordinates) => {
+            new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
         });
-    }, []);
-
+    }, [fighterLocations]);
 
     return (
         <>
@@ -74,7 +70,6 @@ const Map = () => {
                     height: "700px",
                 }}
             >
-                
                 <div
                     id="map"
                     style={{
