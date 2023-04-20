@@ -17,13 +17,13 @@ export default function SearchBar() {
                     fontSize: "18px",
                     width: "400px",
                     marginRight: "10px",
-                    backgroundColor: "rgb(204, 228, 247)",
+                    backgroundColor: "#E0FFFF",
                 }}
                 type="text"
             />
             <button
                 style={{
-                    backgroundColor: "rgb(204, 228, 247)",
+                    backgroundColor: "#E0FFFF",
                     border: "none",
                     borderRadius: "20px",
                     cursor: "pointer",

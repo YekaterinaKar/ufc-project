@@ -8,13 +8,7 @@ function Home() {
   const {data, isLoading} = useSWR("/api/fighters")
   if (isLoading) {
     return (
-        <Image
-            
-            src="/lo.png"
-            alt="spinner"
-            width={70}
-            height={50}
-        />
+       <h2> wait a second ...</h2>
     );
   }
   console.log(data)

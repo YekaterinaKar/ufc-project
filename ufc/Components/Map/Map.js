@@ -24,7 +24,7 @@ const Map = () => {
             // Set the default atmosphere style
             // map.setFog({});
 
-            // Add a marker for Brazil
+           
         });
 
         const markerLocations = [
