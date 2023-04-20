@@ -18,26 +18,22 @@ export default function SearchBar() {
                     width: "400px",
                     marginRight: "10px",
                     backgroundColor: "#E0FFFF",
+                    marginTop: "25px",
                 }}
                 type="text"
             />
             <button
                 style={{
+                    padding: "19px",
+                    border: "black, 1px, solid",
+                    borderRadius: "30px",
                     backgroundColor: "#E0FFFF",
-                    border: "none",
-                    borderRadius: "20px",
-                    cursor: "pointer",
-                    padding: "10px",
-                    fontSize: "20px",
+                    marginLeft: "10px",
+                    marginTop: "25px",
                 }}
                 type="submit"
             >
-                <Image
-                    src="/s.png"
-                    alt="magnifying glass"
-                    width={45}
-                    height={45}
-                />
+                
             </button>
         </form>
     );

@@ -1,8 +1,6 @@
 import "@component/styles/globals.css";
-import SearchBar  from "../../Components/SearchBar/SearchBar";
-import Map from "../../Components/Map/Map";
 import { SWRConfig } from "swr";
-import FighterCard from "../../Components/FighterCard/FighterCard";
+
 
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -18,10 +16,7 @@ export default function App({ Component, pageProps }) {
         >
             <SWRConfig value={{ fetcher }}>
                 <Component {...pageProps} />
-           <SearchBar/> 
-                <Map /> 
-                <FighterCard/>
-                
+             
             </SWRConfig>
         </div>
     );

@@ -1,6 +1,24 @@
 import FighterImage from "../FighterImage/FighterImage";
 
+import { useState, useEffect } from "react";
+
 export default function FighterCard() {
+    const [fighters, setFighters] = useState([]);
+
+  useEffect(() => {
+    async function fetchFighters() {
+      try {
+        const res = await fetch('/api/fighters');
+        const data = await res.json();
+        setFighters(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchFighters();
+  }, []);
+
     return (
         <>
         
@@ -24,7 +42,7 @@ export default function FighterCard() {
                     <li>Country</li>
                     <li>Weight class</li>
                     <li>age</li>
-                    <li>winn loss reconds</li>
+                    <li>win loss records</li>
                     
                 </ul>
             </section>
