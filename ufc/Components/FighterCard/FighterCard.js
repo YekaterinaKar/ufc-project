@@ -1,7 +1,9 @@
 import FighterImage from "../FighterImage/FighterImage";
 import { useState, useEffect } from "react";
 
-export default function FighterCard() {
+export default function FighterCard({fighter}) {
+
+  console.log("FighterCard:", fighter);
     const [fighters, setFighters] = useState([]);
 
     useEffect(() => {

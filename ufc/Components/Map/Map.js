@@ -1,11 +1,11 @@
 import Head from "next/head";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
 import mapboxgl from "mapbox-gl";
 
-
-const Map = () => {
+const Map = ({ handleClick }) => {
     const [fighterLocations, setFighterLocations] = useState([]); // state updating coordinates
+    const ref = useRef(null);
 
     // useEffect fetching marker`s coordinates from DB
     useEffect(() => {
@@ -22,7 +22,7 @@ const Map = () => {
         fetchFighterLocations();
     }, []);
 
-    //useEffect fetching the map 
+    //useEffect fetching the map
     useEffect(() => {
         mapboxgl.accessToken =
             "pk.eyJ1IjoieWVrYXRlcmluYWthciIsImEiOiJjbGdtOGN4ajYwM2JkM2ZvZXVmNDhuY3Q2In0.ll321VCFIp0yuT7np-GEnA";
@@ -39,27 +39,37 @@ const Map = () => {
             map.setLayoutProperty("country-label", "visibility");
         });
 
+        ref.current.addEventListener("click", (e) => {
+            console.log(e);
+            if (e.target?.hasAttribute("data-fighter-id")) {
+                const fighterId = e.target.dataset.fighterId;
+                console.log("fighter button clicked", fighterId);
+            }
+        });
 
-        console.log(fighterLocations) // the whole array of objects with all keys
+        console.log(fighterLocations); // the whole array of objects with all keys
 
-       fighterLocations.forEach((fighter) => {
-           const marker = new mapboxgl.Marker({ color: "yellow" })
-               .setLngLat(fighter.coordinates)
-               .addTo(map);
+        fighterLocations.forEach((fighter) => {
+            const marker = new mapboxgl.Marker({ color: "yellow" })
+                .setLngLat(fighter.coordinates)
+                .addTo(map);
 
-           const popup = new mapboxgl.Popup({ offset: 25 }) // sets pop ups
-               .setHTML(
-                   `<h3>${fighter.name}</h3><a href="${fighter.moreInfoUrl}">More info</a>`
-               )
-               .setMaxWidth("250px");
+            const popup = new mapboxgl.Popup({ offset: 25 }) // sets pop ups
+                .setHTML(
+                    ` <h3>${fighter.name}</h3>
+                       <button  data-fighter-id="${fighter._id}">
+                           More info
+                       </button>
+                       `
+                )
+                .setMaxWidth("250px");
 
-           marker.setPopup(popup);
-       });
-
+            marker.setPopup(popup);
+        });
     }, [fighterLocations]);
 
     return (
-        <>
+        <div ref={ref}>
             <Head>
                 <meta
                     name="viewport"
@@ -92,7 +102,7 @@ const Map = () => {
                     }}
                 ></div>
             </div>
-        </>
+        </div>
     );
 };
 
