@@ -25,7 +25,7 @@ function FightersPage() {
       <ul>
         {fighters.map((fighter) => (
           <li key={fighter._id}>
-            {fighter.name} - {fighter.weight}, {fighter.country}, {fighter.coordinates}
+            {fighter.name} - {fighter.weight}, {fighter.country}
           </li>
         ))}
       </ul>

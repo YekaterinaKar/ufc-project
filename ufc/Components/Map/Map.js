@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import Script from "next/script";
 import mapboxgl from "mapbox-gl";
 
-const Map = () => {
-    const [fighterLocations, setFighterLocations] = useState([]);
 
+const Map = () => {
+    const [fighterLocations, setFighterLocations] = useState([]); // state updating coordinates
+
+    // useEffect fetching marker`s coordinates from DB
     useEffect(() => {
         const fetchFighterLocations = async () => {
             try {
@@ -20,6 +22,7 @@ const Map = () => {
         fetchFighterLocations();
     }, []);
 
+    //useEffect fetching the map 
     useEffect(() => {
         mapboxgl.accessToken =
             "pk.eyJ1IjoieWVrYXRlcmluYWthciIsImEiOiJjbGdtOGN4ajYwM2JkM2ZvZXVmNDhuY3Q2In0.ll321VCFIp0yuT7np-GEnA";
@@ -33,21 +36,19 @@ const Map = () => {
         });
 
         map.on("load", () => {
-            map.setLayoutProperty("country-label", "visibility", "none");
+            map.setLayoutProperty("country-label", "visibility");
         });
 
-        const coordinatesArray = fighterLocations.map(
-            (fighter) => fighter.coordinates
-        );
-        console.log(coordinatesArray);
 
-        coordinatesArray.forEach((coordinates) => {
-            const marker = new mapboxgl.Marker({ color: "yellow" })
-                .setLngLat(coordinates)
+        console.log(fighterLocations) // the whole array of objects with all keys
+
+        fighterLocations.forEach((fighter) => {
+            const marker = new mapboxgl.Marker({ color: "yellow" }) 
+                .setLngLat(fighter.coordinates)
                 .addTo(map);
 
-            const popup = new mapboxgl.Popup({ offset: 25 })
-                .setHTML(`<h3>Fighter</h3>`)
+            const popup = new mapboxgl.Popup({ offset: 25 })  // sets pop ups
+                .setHTML(`<h3>${fighter.name}</h3>`)
                 .setMaxWidth("300px");
 
             marker.setPopup(popup);

@@ -21,9 +21,7 @@ export default function FighterCard() {
 
     return (
         <>
-        
             <section
-            
                 style={{
                     position: "absolute",
                     top: "50%",
@@ -36,14 +34,20 @@ export default function FighterCard() {
                     textAlign: "center",
                 }}
             >
-                <FighterImage/>
+                <FighterImage />
+                <br />
                 <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
-                    <li>Name</li>
-                    <li>Country</li>
-                    <li>Weight class</li>
+                    <li>Name: Amanda Nunes</li>
+                    <br />
+                    <li>Country: Brazil</li>
+                    <br />
+                    <li>Weight class: Bandetweight</li>
+                    <br />
                     <li>age</li>
-                    <li>win loss records</li>
-                    
+                    <br />
+                    <li>height</li>
+                    <br />
+                    <li>win loss records: 23, 5, 1</li>
                 </ul>
             </section>
         </>
