@@ -42,17 +42,20 @@ const Map = () => {
 
         console.log(fighterLocations) // the whole array of objects with all keys
 
-        fighterLocations.forEach((fighter) => {
-            const marker = new mapboxgl.Marker({ color: "yellow" }) 
-                .setLngLat(fighter.coordinates)
-                .addTo(map);
+       fighterLocations.forEach((fighter) => {
+           const marker = new mapboxgl.Marker({ color: "yellow" })
+               .setLngLat(fighter.coordinates)
+               .addTo(map);
 
-            const popup = new mapboxgl.Popup({ offset: 25 })  // sets pop ups
-                .setHTML(`<h3>${fighter.name}</h3>`)
-                .setMaxWidth("300px");
+           const popup = new mapboxgl.Popup({ offset: 25 }) // sets pop ups
+               .setHTML(
+                   `<h3>${fighter.name}</h3><a href="${fighter.moreInfoUrl}">More info</a>`
+               )
+               .setMaxWidth("250px");
 
-            marker.setPopup(popup);
-        });
+           marker.setPopup(popup);
+       });
+
     }, [fighterLocations]);
 
     return (
