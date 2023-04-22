@@ -1,24 +1,8 @@
 import FighterImage from "../FighterImage/FighterImage";
-import { useState, useEffect } from "react";
-
-export default function FighterCard({name, country, weight}) {
-    const [fighters, setFighters] = useState([]);
-
-    useEffect(() => {
-        async function fetchFighters() {
-            try {
-                const res = await fetch("/api/fighters");
-                const data = await res.json();
-                setFighters(data);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        fetchFighters();
-    }, []);
 
 
+export default function FighterCard({name, country, weight, image}) {
+    
 
     return (
         <>
@@ -39,10 +23,12 @@ export default function FighterCard({name, country, weight}) {
                     textAlign: "center",
                 }}
             >
-                <FighterImage />
+                <FighterImage image={image} />
                 <br />
                 <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
-                    <li>Name: {name}</li>
+                    <li style ={{fontWeight: "bold"}}>
+                        Name: {name}
+                    </li>
 
                     <li>Country: {country} </li>
 
@@ -53,7 +39,7 @@ export default function FighterCard({name, country, weight}) {
                     <li>Rating: </li>
 
                     <li>DOB: </li>
-                    
+
                     <li>Record: </li>
                 </ul>
             </section>

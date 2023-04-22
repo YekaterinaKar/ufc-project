@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import FighterCard from "../FighterCard/FighterCard";
+import FighterImage from "../FighterImage/FighterImage";
 
 export default function SearchBar() {
     const [searchValue, setSearchValue] = useState("");
@@ -7,7 +8,7 @@ export default function SearchBar() {
 
     const handleInputChange = (event) => {
         setSearchValue(event.target.value);
-        setMatchingFighter(null); // reset match found when input changes
+        setMatchingFighter(null); // reset match found when input changes but should be on search button click
     };
 
     const handleFormSubmit = (event) => {
@@ -75,12 +76,15 @@ console.log("Mathing fighter",matchingFighter)
                     type="submit"
                 ></button>
             </form>
-            {matchingFighter && (
+            {matchingFighter && ( 
                 <FighterCard
+              image={matchingFighter.image}
                     name={matchingFighter.name}
                     country={matchingFighter.country}
                     weight={matchingFighter.weight}
+
                 />
+                
             )}
         </div>
     );

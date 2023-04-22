@@ -6,7 +6,8 @@ const fighterSchema = new Schema({
     name: { type: String, required: true },
     country: { type: String, required: true },
     weight: { type: String, required: true },
-    coordinates: { type: [Number], required: true }
+    coordinates: { type: [Number], required: true },
+    image: { type: String, required: false }
 });
  
 

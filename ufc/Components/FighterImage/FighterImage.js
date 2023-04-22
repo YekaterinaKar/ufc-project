@@ -1,11 +1,11 @@
 import Image from "next/image";
 
-export default function FighterImage() {
+export default function FighterImage({image}) {
     return (
         <div>
             <Image
-                src="/amanda-nunes.png"
-                alt="Amanda Nunes"
+                src={image}
+                alt="Holly Holm"
                 width={200}
                 height={300}
             />
