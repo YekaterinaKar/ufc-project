@@ -41,10 +41,12 @@ const Map = ({ handleClick }) => {
 
         ref.current.addEventListener("click", (e) => {
             console.log(e);
-            if (e.target?.hasAttribute("data-fighter-id")) {
-                const fighterId = e.target.dataset.fighterId;
-                console.log("fighter button clicked", fighterId);
+            if(e.target?.hasAttribute("data-fighter-id")) {
+                const fighterId = e.target.dataset.fighterId
+                console.log("fighter button clicked", fighterId)
+                
             }
+
         });
 
         console.log(fighterLocations); // the whole array of objects with all keys

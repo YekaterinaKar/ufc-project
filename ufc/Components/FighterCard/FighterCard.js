@@ -1,9 +1,7 @@
 import FighterImage from "../FighterImage/FighterImage";
 import { useState, useEffect } from "react";
 
-export default function FighterCard({fighter}) {
-
-  console.log("FighterCard:", fighter);
+export default function FighterCard() {
     const [fighters, setFighters] = useState([]);
 
     useEffect(() => {
@@ -19,46 +17,44 @@ export default function FighterCard({fighter}) {
 
         fetchFighters();
     }, []);
-
+console.log(fighters[7])
     return (
         <>
-            {fighters.map((fighter) => (
-                <section
-                    key={fighter._id}
-                    style={{
-                        position: "relative",
-                        display: "inline-block",
-                        width: "250px",
-                        height: "350px",
-                        backgroundColor: "#fff",
-                        padding: "20px",
-                        margin: "20px",
-                        borderRadius: "10px",
-                        boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-                        textAlign: "center",
-                    }}
-                >
-                    <FighterImage />
-                    <br />
-                    <ul
-                        style={{ listStyle: "none", padding: "0", margin: "0" }}
-                    >
-                        <li>Name: {fighter.name}</li>
+            <section
+                style={{
+                    position: "fixed",
+                    top: "50%",
+                    left: "20px",
+                    transform: "translateY(-50%)",
+                    display: "inline-block",
+                    width: "250px",
+                    height: "500px",
+                    backgroundColor: "#fff",
+                    padding: "20px",
+                    margin: "20px",
+                    borderRadius: "10px",
+                    boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+                    textAlign: "center",
+                }}
+            >
+                <FighterImage />
+                <br />
+                <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
+                    <li>Name: {fighters.name}</li>
 
-                        <li>Country: {fighter.country} </li>
+                    <li>Country: {fighters.country} </li>
 
-                        <li>Weight class: {fighter.weight} </li>
+                    <li>Weight class: {fighters.weight} </li>
 
-                        <li>Height: </li>
+                    <li>Height: </li>
 
-                        <li>Rating: </li>
+                    <li>Rating: </li>
 
-                        <li>DOB: </li>
-
-                        <li>Record: </li>
-                    </ul>
-                </section>
-            ))}
+                    <li>DOB: </li>
+                    
+                    <li>Record: </li>
+                </ul>
+            </section>
         </>
     );
 }

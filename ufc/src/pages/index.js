@@ -5,7 +5,7 @@ import Image from "next/image";
 import Map from "../../Components/Map/Map";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import FighterCard from "../../Components/FighterCard/FighterCard";
-import CommonFightsCard from "../../Components/CommonFightsCard/CommonFightsCards";
+
 
 
 function Home() {
@@ -22,15 +22,14 @@ function Home() {
   function handleClick(newData) {
     const newFighter = data.find((fighter) => fighter._id === newData)
     setFighter(newFighter)
+   
   }
 
     return (
         <>
             <SearchBar />
-            
-            <div>
-                <Map handleClick={handleClick} />
-            </div>
+           <FighterCard/>
+            <Map handleClick={handleClick} />
         </>
     );
 }
