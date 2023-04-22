@@ -27,8 +27,8 @@ function Home() {
 
     return (
         <>
-            <SearchBar />
-           <FighterCard/>
+            <SearchBar  />
+          
             <Map handleClick={handleClick} />
         </>
     );

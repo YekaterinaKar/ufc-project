@@ -1,30 +1,23 @@
-import Image from "next/image";
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import FighterCard from "../FighterCard/FighterCard";
-
-
-
-
 
 export default function SearchBar() {
     const [searchValue, setSearchValue] = useState("");
-    const [matchFound, setMatchFound] = useState(false);
+    const [matchingFighter, setMatchingFighter] = useState(null);
 
     const handleInputChange = (event) => {
         setSearchValue(event.target.value);
-        setMatchFound(false); // reset match found when input changes
+        setMatchingFighter(null); // reset match found when input changes
     };
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
         console.log(`Searching for ${searchValue}`);
-        setMatchFound(
-            fighters.some(
-                (fighter) =>
-                    fighter.name.toLowerCase() ===
-                    searchValue.toLowerCase().trim()
-            )
-        ); // check if there is a fighter with matching name
+        const foundFighter = fighters.find(
+            (fighter) =>
+                fighter.name.toLowerCase() === searchValue.toLowerCase().trim()
+        );
+        setMatchingFighter(foundFighter || null);
     };
 
     const [fighters, setFighters] = useState([]);
@@ -43,10 +36,7 @@ export default function SearchBar() {
         fetchFighters();
     }, []);
 
-    const filteredFighters = fighters.filter((fighter) =>
-        fighter.name.toLowerCase().includes(searchValue.toLowerCase().trim())
-    );
-
+console.log("Mathing fighter",matchingFighter)
     return (
         <div>
             <form
@@ -83,22 +73,15 @@ export default function SearchBar() {
                         marginTop: "25px",
                     }}
                     type="submit"
-                >
-                   
-                </button>
+                ></button>
             </form>
-            {matchFound &&
-                filteredFighters.map((fighter) => (
-                    <FighterCard
-                        key={fighter._id}
-                        name={fighter.name}
-                        country={fighter.country}
-                        weight={fighter.weight}
-                    />
-                ))}
+            {matchingFighter && (
+                <FighterCard
+                    name={matchingFighter.name}
+                    country={matchingFighter.country}
+                    weight={matchingFighter.weight}
+                />
+            )}
         </div>
     );
 }
-
-
-

@@ -1,7 +1,7 @@
 import FighterImage from "../FighterImage/FighterImage";
 import { useState, useEffect } from "react";
 
-export default function FighterCard() {
+export default function FighterCard({name, country, weight}) {
     const [fighters, setFighters] = useState([]);
 
     useEffect(() => {
@@ -17,7 +17,9 @@ export default function FighterCard() {
 
         fetchFighters();
     }, []);
-console.log(fighters[7])
+
+
+
     return (
         <>
             <section
@@ -40,11 +42,11 @@ console.log(fighters[7])
                 <FighterImage />
                 <br />
                 <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
-                    <li>Name: {fighters.name}</li>
+                    <li>Name: {name}</li>
 
-                    <li>Country: {fighters.country} </li>
+                    <li>Country: {country} </li>
 
-                    <li>Weight class: {fighters.weight} </li>
+                    <li>Weight class: {weight} </li>
 
                     <li>Height: </li>
 
