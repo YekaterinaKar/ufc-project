@@ -2,9 +2,11 @@ import Head from "next/head";
 import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
 import mapboxgl from "mapbox-gl";
+import FighterCard from "../FighterCard/FighterCard";
 
 const Map = ({ handleClick }) => {
     const [fighterLocations, setFighterLocations] = useState([]); // state updating coordinates
+    const [selectedFighter, setSelectedFighter] = useState(null);
     const ref = useRef(null);
 
     // useEffect fetching marker`s coordinates from DB
@@ -41,12 +43,14 @@ const Map = ({ handleClick }) => {
 
         ref.current.addEventListener("click", (e) => {
             console.log(e);
-            if(e.target?.hasAttribute("data-fighter-id")) {
-                const fighterId = e.target.dataset.fighterId
-                console.log("fighter button clicked", fighterId)
-                
+            if (e.target?.hasAttribute("data-fighter-id")) {
+                const fighterId = e.target.dataset.fighterId;
+                console.log("fighter button clicked", fighterId);
+                const selectedFighter = fighterLocations.find(
+                    (fighter) => fighter.name === fighterId
+                );
+                setSelectedFighter(selectedFighter);
             }
-
         });
 
         console.log(fighterLocations); // the whole array of objects with all keys
@@ -59,12 +63,13 @@ const Map = ({ handleClick }) => {
             const popup = new mapboxgl.Popup({ offset: 25 }) // sets pop ups
                 .setHTML(
                     ` <h3>${fighter.name}</h3>
-                       <button  data-fighter-id="${fighter._id}">
+                       <button  data-fighter-id="${fighter.name}">
                            More info
                        </button>
                        `
                 )
-                .setMaxWidth("250px");
+                .setMaxWidth("200px")
+                
 
             marker.setPopup(popup);
         });
@@ -103,7 +108,14 @@ const Map = ({ handleClick }) => {
                         right: 0,
                     }}
                 ></div>
-            </div>
+            </div> {selectedFighter && (
+                <FighterCard
+                    image={selectedFighter.image}
+                    name={selectedFighter.name}
+            
+                country={selectedFighter.country}
+                weight={selectedFighter.weight}
+            /> )}
         </div>
     );
 };

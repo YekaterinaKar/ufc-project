@@ -1,7 +1,6 @@
 import React from "react";
 import useSWR from "swr";
 import { useState } from "react";
-import Image from "next/image";
 import Map from "../../Components/Map/Map";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import FighterCard from "../../Components/FighterCard/FighterCard";

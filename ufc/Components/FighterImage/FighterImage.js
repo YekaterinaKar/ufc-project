@@ -5,7 +5,7 @@ export default function FighterImage({image}) {
         <div>
             <Image
                 src={image}
-                alt="Holly Holm"
+                alt="fighter_image"
                 width={200}
                 height={300}
             />
