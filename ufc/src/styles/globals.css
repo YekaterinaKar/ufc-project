@@ -1,5 +1,5 @@
 body {
-  background-color: #E0FFFF;
+  background-color:#dfeefa ;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 button[data-fighter-id] {
@@ -7,8 +7,9 @@ button[data-fighter-id] {
     border-radius: 10px;
    
   
-   background-color:  #E0FFFF;
+   background-color: "#E0FFFF";
   border: none;
   font-weight: bold;
   font-family: Helvetica Neue,Arial,Helvetica,sans-serif;
 }
+

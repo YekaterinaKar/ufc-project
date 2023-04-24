@@ -4,31 +4,37 @@ import { useState } from "react";
 import Map from "../../Components/Map/Map";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import FighterCard from "../../Components/FighterCard/FighterCard";
-
+import Image from "next/image";
+import CommonFightsCard from "../../Components/CommonFightsCard/CommonFightsCards";
 
 
 function Home() {
-  const [fighter, setFighter] =useState("")
+  
 
   const {data, isLoading} = useSWR("/api/fighters")
   if (isLoading) {
     return (
-       <h2> wait a second ...</h2>
+        <>
+            
+            <Image
+                src="/My-Jab-Gym-Gloves-original.png"
+                alt=""
+                width={500}
+                height={500}
+            />
+        </>
     );
   }
   console.log("From Index: ", data)
 
-  function handleClick(newData) {
-    const newFighter = data.find((fighter) => fighter._id === newData)
-    setFighter(newFighter)
-   
-  }
+
 
     return (
         <>
             <SearchBar  />
           
-            <Map handleClick={handleClick} />
+            <Map  />
+            
         </>
     );
 }

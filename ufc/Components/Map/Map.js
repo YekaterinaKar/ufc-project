@@ -4,9 +4,10 @@ import Script from "next/script";
 import mapboxgl from "mapbox-gl";
 import FighterCard from "../FighterCard/FighterCard";
 
-const Map = ({ handleClick }) => {
+const Map = () => {
     const [fighterLocations, setFighterLocations] = useState([]); // state updating coordinates
     const [selectedFighter, setSelectedFighter] = useState(null);
+     
     const ref = useRef(null);
 
     // useEffect fetching marker`s coordinates from DB
@@ -16,6 +17,7 @@ const Map = ({ handleClick }) => {
                 const response = await fetch("api/fighters");
                 const data = await response.json();
                 setFighterLocations(data);
+                
             } catch (error) {
                 console.log(error);
             }
@@ -42,18 +44,19 @@ const Map = ({ handleClick }) => {
         });
 
         ref.current.addEventListener("click", (e) => {
-            console.log(e);
+            
             if (e.target?.hasAttribute("data-fighter-id")) {
                 const fighterId = e.target.dataset.fighterId;
                 console.log("fighter button clicked", fighterId);
                 const selectedFighter = fighterLocations.find(
-                    (fighter) => fighter.name === fighterId
+                    (fighter) => fighter._id === fighterId
                 );
                 setSelectedFighter(selectedFighter);
             }
         });
+console.log("selectedFighter", selectedFighter)
 
-        console.log(fighterLocations); // the whole array of objects with all keys
+        console.log("fighterLocation", fighterLocations); // the whole array of objects with all keys
 
         fighterLocations.forEach((fighter) => {
             const marker = new mapboxgl.Marker({ color: "yellow" })
@@ -63,7 +66,7 @@ const Map = ({ handleClick }) => {
             const popup = new mapboxgl.Popup({ offset: 25 }) // sets pop ups
                 .setHTML(
                     ` <h3>${fighter.name}</h3>
-                       <button  data-fighter-id="${fighter.name}">
+                       <button  data-fighter-id="${fighter._id}">
                            More info
                        </button>
                        `
@@ -74,6 +77,8 @@ const Map = ({ handleClick }) => {
             marker.setPopup(popup);
         });
     }, [fighterLocations]);
+
+   
 
     return (
         <div ref={ref}>
@@ -115,6 +120,11 @@ const Map = ({ handleClick }) => {
             
                 country={selectedFighter.country}
                 weight={selectedFighter.weight}
+                height={selectedFighter.height}
+                dob={selectedFighter.DOB}
+                ranking={selectedFighter.ranking}
+                record={selectedFighter.record}
+
             /> )}
         </div>
     );

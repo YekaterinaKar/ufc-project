@@ -8,7 +8,7 @@ export default function SearchBar() {
 
     const handleInputChange = (event) => {
         setSearchValue(event.target.value);
-        setMatchingFighter(null); // reset match found when input changes but should be on search button click
+      //  setMatchingFighter(null); // reset match found when input changes but should be on search button click
     };
 
     const handleFormSubmit = (event) => {
@@ -38,6 +38,7 @@ export default function SearchBar() {
     }, []);
 
 console.log("Mathing fighter",matchingFighter)
+
     return (
         <div>
             <form
@@ -57,7 +58,7 @@ console.log("Mathing fighter",matchingFighter)
                         fontSize: "18px",
                         width: "400px",
                         marginRight: "10px",
-                        backgroundColor: "#E0FFFF",
+                        backgroundColor: "#dfeefa",
                         marginTop: "25px",
                     }}
                     type="text"
@@ -69,22 +70,25 @@ console.log("Mathing fighter",matchingFighter)
                         padding: "19px",
                         border: "black, 1px, solid",
                         borderRadius: "30px",
-                        backgroundColor: "#E0FFFF",
+                        backgroundColor: "#dfeefa",
                         marginLeft: "10px",
                         marginTop: "25px",
                     }}
                     type="submit"
                 ></button>
             </form>
-            {matchingFighter && ( 
+            {matchingFighter && (
                 <FighterCard
-              image={matchingFighter.image}
+                    image={matchingFighter.image}
                     name={matchingFighter.name}
                     country={matchingFighter.country}
                     weight={matchingFighter.weight}
-
+                    height={matchingFighter.height}
+                  
+                    ranking={matchingFighter.ranking}
+                    record={matchingFighter.record}
+                    
                 />
-                
             )}
         </div>
     );

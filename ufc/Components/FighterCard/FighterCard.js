@@ -1,8 +1,10 @@
 import FighterImage from "../FighterImage/FighterImage";
 
 
-export default function FighterCard({name, country, weight, image}) {
-    
+
+export default function FighterCard({name, country, weight, image, height, ranking,  record, }) {
+   
+ 
 
     return (
         <>
@@ -26,21 +28,22 @@ export default function FighterCard({name, country, weight, image}) {
                 <FighterImage image={image} />
                 <br />
                 <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
-                    <li style ={{fontWeight: "bold"}}>
-                        Name: {name}
+                    <li style={{ fontWeight: "bold" }}>Name: {name}</li>
+
+                    
+                    <li style={{ marginTop: "10px" }}>Country: {country} </li>
+
+                    <li style={{ marginTop: "10px" }}>
+                        Weight class: {weight}{" "}
                     </li>
 
-                    <li>Country: {country} </li>
+                    <li style={{ marginTop: "10px" }}>Height: {height} cm</li>
 
-                    <li>Weight class: {weight} </li>
+                    <li style={{ marginTop: "10px" }}>Ranking: {ranking} </li>
 
-                    <li>Height: </li>
+                    <li style={{ marginTop: "10px" }}>Record:{record} </li>
 
-                    <li>Rating: </li>
-
-                    <li>DOB: </li>
-
-                    <li>Record: </li>
+                    
                 </ul>
             </section>
         </>

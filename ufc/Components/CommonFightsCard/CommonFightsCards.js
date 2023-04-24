@@ -6,7 +6,7 @@ export default function CommonFightsCard({ onClose }) {
                     position: "fixed",
                     top: "50%",
                     left: "50%",
-                    transform: "translate(-50%, -50%)",
+                    transform: "translate(-50%, 100%)",
                     backgroundColor: "#fff",
                     padding: "20px",
                     borderRadius: "10px",
