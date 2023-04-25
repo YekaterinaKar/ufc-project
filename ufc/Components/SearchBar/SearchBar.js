@@ -8,7 +8,7 @@ export default function SearchBar() {
 
     const handleInputChange = (event) => {
         setSearchValue(event.target.value);
-      //  setMatchingFighter(null); // reset match found when input changes but should be on search button click
+      //  setMatchingFighter(null); // reset match found when input changes (but i need it just  on search button click)
     };
 
     const handleFormSubmit = (event) => {
@@ -22,7 +22,7 @@ export default function SearchBar() {
     };
 
     const [fighters, setFighters] = useState([]);
-
+console.log("Fighters from Searchbar", fighters)
     useEffect(() => {
         async function fetchFighters() {
             try {
@@ -78,17 +78,33 @@ console.log("Mathing fighter",matchingFighter)
                 ></button>
             </form>
             {matchingFighter && (
-                <FighterCard
-                    image={matchingFighter.image}
-                    name={matchingFighter.name}
-                    country={matchingFighter.country}
-                    weight={matchingFighter.weight}
-                    height={matchingFighter.height}
-                  
-                    ranking={matchingFighter.ranking}
-                    record={matchingFighter.record}
-                    
-                />
+                <div
+                    style={{
+                        position: "fixed",
+                        top: "50%",
+                        right: "20px",
+                        transform: "translate(0,-50%)",
+                        display: "inline-block",
+                        width: "250px",
+                        height: "500px",
+                        backgroundColor: "#fff",
+                        padding: "20px",
+                        margin: "20px",
+                        borderRadius: "10px",
+                        boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+                        textAlign: "center",
+                    }}
+                >
+                    <FighterCard
+                        image={matchingFighter.image}
+                        name={matchingFighter.name}
+                        country={matchingFighter.country}
+                        weight={matchingFighter.weight}
+                        height={matchingFighter.height}
+                        ranking={matchingFighter.ranking}
+                        record={matchingFighter.record}
+                    />
+                </div>
             )}
         </div>
     );

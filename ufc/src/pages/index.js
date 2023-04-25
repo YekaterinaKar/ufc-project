@@ -31,9 +31,8 @@ function Home() {
 
     return (
         <>
-            <SearchBar  />
-          
-            <Map  />
+            <SearchBar /> 
+            <Map />
             
         </>
     );

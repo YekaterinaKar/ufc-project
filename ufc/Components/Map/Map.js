@@ -114,6 +114,23 @@ console.log("selectedFighter", selectedFighter)
                     }}
                 ></div>
             </div> {selectedFighter && (
+                 <div
+                    style={{
+                        position: "fixed",
+                        top: "50%",
+                        left: "20px",
+                        transform: "translate(0,-50%)",
+                        display: "inline-block",
+                        width: "250px",
+                        height: "500px",
+                        backgroundColor: "#fff",
+                        padding: "20px",
+                        margin: "20px",
+                        borderRadius: "10px",
+                        boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+                        textAlign: "center",
+                    }}
+                >
                 <FighterCard
                     image={selectedFighter.image}
                     name={selectedFighter.name}
@@ -121,11 +138,10 @@ console.log("selectedFighter", selectedFighter)
                 country={selectedFighter.country}
                 weight={selectedFighter.weight}
                 height={selectedFighter.height}
-                dob={selectedFighter.DOB}
                 ranking={selectedFighter.ranking}
                 record={selectedFighter.record}
 
-            /> )}
+            /> </div> )}
         </div>
     );
 };
