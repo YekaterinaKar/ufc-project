@@ -9,7 +9,8 @@ import CommonFightsCard from "../../Components/CommonFightsCard/CommonFightsCard
 
 
 function Home() {
-  
+  const [selectedFighter, setSelectedFighter] = useState(null);
+
 
   const {data, isLoading} = useSWR("/api/fighters")
   if (isLoading) {
@@ -31,9 +32,37 @@ function Home() {
 
     return (
         <>
-            <SearchBar /> 
-            <Map />
-            <CommonFightsCard/>
+            <SearchBar />
+            <Map setSelectedFighter={setSelectedFighter} />
+            <CommonFightsCard />
+
+            {selectedFighter && (
+                <div
+                    style={{
+                        position: "fixed",
+                        top: "50%",
+                        left: "20px",
+                        transform: "translate(0,-50%)",
+                        display: "inline-block",
+                        width: "250px",
+                        height: "500px",
+                        backgroundColor: "#fff",
+                        padding: "20px",
+                        margin: "20px",
+                        borderRadius: "10px",
+                        boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+                        textAlign: "center",
+                    }}
+                >
+                    <FighterCard
+                        image={selectedFighter.image}
+                        name={selectedFighter.name}
+                        record={selectedFighter.record}
+                        weightClass={selectedFighter.weightClass}
+                        
+                    />
+                </div>
+            )}
         </>
     );
 }

@@ -4,9 +4,9 @@ import Script from "next/script";
 import mapboxgl from "mapbox-gl";
 import FighterCard from "../FighterCard/FighterCard";
 
-const Map = () => {
+const Map = ({setSelectedFighter}) => {
     const [fighterLocations, setFighterLocations] = useState([]); // state updating coordinates
-    const [selectedFighter, setSelectedFighter] = useState(null);
+   
      
     const ref = useRef(null);
 
@@ -54,7 +54,7 @@ const Map = () => {
                 setSelectedFighter(selectedFighter);
             }
         });
-console.log("selectedFighter", selectedFighter)
+
 
         console.log("fighterLocation", fighterLocations); // the whole array of objects with all keys
 
@@ -113,35 +113,7 @@ console.log("selectedFighter", selectedFighter)
                         right: 0,
                     }}
                 ></div>
-            </div> {selectedFighter && (
-                 <div
-                    style={{
-                        position: "fixed",
-                        top: "50%",
-                        left: "20px",
-                        transform: "translate(0,-50%)",
-                        display: "inline-block",
-                        width: "250px",
-                        height: "500px",
-                        backgroundColor: "#fff",
-                        padding: "20px",
-                        margin: "20px",
-                        borderRadius: "10px",
-                        boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-                        textAlign: "center",
-                    }}
-                >
-                <FighterCard
-                    image={selectedFighter.image}
-                    name={selectedFighter.name}
-            
-                country={selectedFighter.country}
-                weight={selectedFighter.weight}
-                height={selectedFighter.height}
-                ranking={selectedFighter.ranking}
-                record={selectedFighter.record}
-
-            /> </div> )}
+            </div>
         </div>
     );
 };
