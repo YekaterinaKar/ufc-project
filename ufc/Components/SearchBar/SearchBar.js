@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import FighterCard from "../FighterCard/FighterCard";
 import FighterImage from "../FighterImage/FighterImage";
 
-export default function SearchBar() {
+export default function SearchBar({setMatchingFighter}) {
     const [searchValue, setSearchValue] = useState("");
-    const [matchingFighter, setMatchingFighter] = useState(null);
+    //const [matchingFighter, setMatchingFighter] = useState(null);
 
     const handleInputChange = (event) => {
         setSearchValue(event.target.value);
@@ -37,7 +37,7 @@ console.log("Fighters from Searchbar", fighters)
         fetchFighters();
     }, []);
 
-console.log("Mathing fighter",matchingFighter)
+
 
     return (
         <div>
@@ -77,35 +77,7 @@ console.log("Mathing fighter",matchingFighter)
                     type="submit"
                 ></button>
             </form>
-            {matchingFighter && (
-                <div
-                    style={{
-                        position: "fixed",
-                        top: "50%",
-                        right: "20px",
-                        transform: "translate(0,-50%)",
-                        display: "inline-block",
-                        width: "250px",
-                        height: "500px",
-                        backgroundColor: "#fff",
-                        padding: "20px",
-                        margin: "20px",
-                        borderRadius: "10px",
-                        boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-                        textAlign: "center",
-                    }}
-                >
-                    <FighterCard
-                        image={matchingFighter.image}
-                        name={matchingFighter.name}
-                        country={matchingFighter.country}
-                        weight={matchingFighter.weight}
-                        height={matchingFighter.height}
-                        ranking={matchingFighter.ranking}
-                        record={matchingFighter.record}
-                    />
-                </div>
-            )}
+           
         </div>
     );
 }
