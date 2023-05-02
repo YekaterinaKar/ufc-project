@@ -26,11 +26,12 @@ function Home() {
     }
     console.log("From Index: ", data);
 
-    // const isSameFighter =
-    //    selectedFighter &&
-    //     matchingFighter &&
-    //     selectedFighter._id === matchingFighter._id;
+     const isSameFighter =
+        selectedFighter &&
+         matchingFighter &&
+         selectedFighter._id === matchingFighter._id;
 
+         isSameFighter? console.log("its the same fighter, common fights card should not be displayed") :null
    
 
     selectedFighter && selectedFighter.fights
@@ -59,7 +60,8 @@ function Home() {
             <SearchBar setMatchingFighter={setMatchingFighter} />
             <Map setSelectedFighter={setSelectedFighter} />
 
-            {haveCommonFights ? <CommonFightsCard /> : null}
+             {isSameFighter ? null : haveCommonFights ? <CommonFightsCard /> : null}
+
 
             {selectedFighter && (
                 <div
