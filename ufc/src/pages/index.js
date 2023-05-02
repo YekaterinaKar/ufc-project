@@ -26,17 +26,40 @@ function Home() {
     }
     console.log("From Index: ", data);
 
-    const isSameFighter =
-        selectedFighter &&
-        matchingFighter &&
-        selectedFighter._id === matchingFighter._id;
+    // const isSameFighter =
+    //    selectedFighter &&
+    //     matchingFighter &&
+    //     selectedFighter._id === matchingFighter._id;
+
+   
+
+    selectedFighter && selectedFighter.fights
+        ? console.log("Selected Fighter fights:", selectedFighter.fights)
+        : null;
+    matchingFighter && matchingFighter.fights
+        ? console.log("Matching fighter fights :", matchingFighter.fights)
+        : null;
+
+       const haveCommonFights =
+           selectedFighter &&
+           matchingFighter &&
+           selectedFighter.fights
+               .split(", ")
+               .some((fight) =>
+                   matchingFighter.fights.split(", ").includes(fight)
+               );
+
+       if (haveCommonFights) {
+           console.log("It's a match");
+       }
+
 
     return (
         <>
             <SearchBar setMatchingFighter={setMatchingFighter} />
             <Map setSelectedFighter={setSelectedFighter} />
 
-            {isSameFighter ? <CommonFightsCard /> : null}
+            {haveCommonFights ? <CommonFightsCard /> : null}
 
             {selectedFighter && (
                 <div
@@ -64,6 +87,7 @@ function Home() {
                         weight={selectedFighter.weight}
                         ranking={selectedFighter.ranking}
                         height={selectedFighter.height}
+                        fights={selectedFighter.fights}
                     />
                 </div>
             )}
@@ -94,6 +118,7 @@ function Home() {
                         height={matchingFighter.height}
                         ranking={matchingFighter.ranking}
                         record={matchingFighter.record}
+                        fights={matchingFighter.fights}
                     />
                 </div>
             )}

@@ -22,7 +22,7 @@ export default function SearchBar({setMatchingFighter}) {
     };
 
     const [fighters, setFighters] = useState([]);
-console.log("Fighters from Searchbar", fighters)
+
     useEffect(() => {
         async function fetchFighters() {
             try {

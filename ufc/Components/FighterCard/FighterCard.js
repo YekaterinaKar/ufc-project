@@ -2,7 +2,7 @@ import FighterImage from "../FighterImage/FighterImage";
 
 
 
-export default function FighterCard({name, country, weight, image, height, ranking,  record, }) {
+export default function FighterCard({name, country, weight, image, height, ranking,  record, fights}) {
    
  
 
