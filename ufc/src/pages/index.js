@@ -33,7 +33,7 @@ function Home() {
         <>
             <SearchBar /> 
             <Map />
-            
+            <CommonFightsCard/>
         </>
     );
 }

@@ -11,6 +11,7 @@ export default function FighterCard({name, country, weight, image, height, ranki
             <section
                 
             >
+                 
                 <FighterImage image={image} />
                 <br />
                 <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
