@@ -58,8 +58,12 @@ function Home() {
                     <FighterCard
                         image={selectedFighter.image}
                         name={selectedFighter.name}
+                        country={selectedFighter.country}
                         record={selectedFighter.record}
-                        weightClass={selectedFighter.weightClass}
+                        weight={selectedFighter.weight}
+                        ranking={selectedFighter.ranking}
+                        height={selectedFighter.height}
+
                     />
                 </div>
             )}
