@@ -7,35 +7,36 @@ import FighterCard from "../../Components/FighterCard/FighterCard";
 import Image from "next/image";
 import CommonFightsCard from "../../Components/CommonFightsCard/CommonFightsCards";
 
-
 function Home() {
-  const [selectedFighter, setSelectedFighter] = useState(null);
-  const [matchingFighter, setMatchingFighter] = useState(null);
+    const [selectedFighter, setSelectedFighter] = useState(null);
+    const [matchingFighter, setMatchingFighter] = useState(null);
 
+    const { data, isLoading } = useSWR("/api/fighters");
+    if (isLoading) {
+        return (
+            <>
+                <Image
+                    src="/My-Jab-Gym-Gloves-original.png"
+                    alt=""
+                    width={500}
+                    height={500}
+                />
+            </>
+        );
+    }
+    console.log("From Index: ", data);
 
-  const {data, isLoading} = useSWR("/api/fighters")
-  if (isLoading) {
+    const isSameFighter =
+        selectedFighter &&
+        matchingFighter &&
+        selectedFighter._id === matchingFighter._id;
+
     return (
         <>
-            
-            <Image
-                src="/My-Jab-Gym-Gloves-original.png"
-                alt=""
-                width={500}
-                height={500}
-            />
-        </>
-    );
-  }
-  console.log("From Index: ", data)
-
-
-
-    return (
-        <>
-            <SearchBar setMatchingFighter = {setMatchingFighter} />
+            <SearchBar setMatchingFighter={setMatchingFighter} />
             <Map setSelectedFighter={setSelectedFighter} />
-            <CommonFightsCard />
+
+            {isSameFighter ? <CommonFightsCard /> : null}
 
             {selectedFighter && (
                 <div
@@ -63,7 +64,6 @@ function Home() {
                         weight={selectedFighter.weight}
                         ranking={selectedFighter.ranking}
                         height={selectedFighter.height}
-
                     />
                 </div>
             )}
@@ -102,5 +102,5 @@ function Home() {
 }
 
 export default Home;
+
 //https://codesandbox.io/s/p5lwvkp7x?file=/package.json
-// <FighterCard fighter={fighter}/>
