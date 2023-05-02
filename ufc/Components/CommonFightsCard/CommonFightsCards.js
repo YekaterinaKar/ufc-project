@@ -24,7 +24,7 @@ export default function CommonFightsCard({between, win, date, rounds, time, by})
  }, []);
 
  console.log("Fights", fights)
- console.log("Fights between", fights[0].between)
+ 
 
  return (
      <>
@@ -59,24 +59,24 @@ export default function CommonFightsCard({between, win, date, rounds, time, by})
                  <br></br>
                  <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
                      <li style={{ fontWeight: "bold", fontSize: "20px" }}>
-                          {fights[0].between}
+                          {between}
                      </li>
 
-                     <li style={{ marginTop: "10px" }}>win: {fights[0].win}</li>
+                     <li style={{ marginTop: "10px" }}>win: {win}</li>
 
                      <li style={{ marginTop: "10px" }}>
-                         date: {fights[0].date}
-                     </li>
-
-                     <li style={{ marginTop: "10px" }}>
-                         rounds: {fights[0].rounds}
+                         date: {date}
                      </li>
 
                      <li style={{ marginTop: "10px" }}>
-                         time: {fights[0].time}
+                         rounds: {rounds}
                      </li>
 
-                     <li style={{ marginTop: "10px" }}>by: {fights[0].by}</li>
+                     <li style={{ marginTop: "10px" }}>
+                         time: {time}
+                     </li>
+
+                     <li style={{ marginTop: "10px" }}>by: {by}</li>
                  </ul>
              </section>
          )}
