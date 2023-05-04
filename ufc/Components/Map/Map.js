@@ -98,6 +98,7 @@ const Map = ({setSelectedFighter}) => {
             />
             <div
                 style={{
+                    
                     position: "relative",
                     width: "700px",
                     height: "700px",

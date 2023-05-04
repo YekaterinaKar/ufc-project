@@ -21,8 +21,8 @@ export default function CommonFightsCard({between, win, date, rounds, time, by, 
      }
 
      fetchFights();
+    ;
  }, []);
-
 
  
 
@@ -30,17 +30,7 @@ export default function CommonFightsCard({between, win, date, rounds, time, by, 
      <>
          {isVisible && (
              <section
-                 style={{
-                     position: "fixed",
-                     top: "50%",
-                     left: "50%",
-                     transform: "translate(-50%, 50%)",
-                     backgroundColor: "#fff",
-                     padding: "20px",
-                     borderRadius: "10px",
-                     boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-                     textAlign: "center",
-                 }}
+                
              >
                  <button
                      style={{
