@@ -5,11 +5,13 @@ import Map from "../../Components/Map/Map";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import FighterCard from "../../Components/FighterCard/FighterCard";
 import Image from "next/image";
-import CommonFightsCard from "../../Components/CommonFightsCard/CommonFightsCards";
+import CommonFightsCard from "../../Components/CommonFightsCard/CommonFightsCard";
 
 function Home() {
     const [selectedFighter, setSelectedFighter] = useState(null);
     const [matchingFighter, setMatchingFighter] = useState(null);
+
+    const [fights, setFights] = useState([]);
 
     const { data, isLoading } = useSWR("/api/fighters");
     if (isLoading) {
@@ -26,13 +28,11 @@ function Home() {
     }
     console.log("From Index: ", data);
 
-     const isSameFighter =
+    const isSameFighter =
         selectedFighter &&
-         matchingFighter &&
-         selectedFighter._id === matchingFighter._id;
+        matchingFighter &&
+        selectedFighter._id === matchingFighter._id;
 
-         isSameFighter? console.log("its the same fighter, common fights card should not be displayed") :null
-   
 
     selectedFighter && selectedFighter.fights
         ? console.log("Selected Fighter fights:", selectedFighter.fights)
@@ -41,18 +41,30 @@ function Home() {
         ? console.log("Matching fighter fights :", matchingFighter.fights)
         : null;
 
-       const haveCommonFights =
-           selectedFighter &&
-           matchingFighter &&
-           selectedFighter.fights
-               .split(", ")
-               .some((fight) =>
-                   matchingFighter.fights.split(", ").includes(fight)
-               );
+    fights ? console.log("fights arry of objects", fights) : null;
 
-       if (haveCommonFights) {
-           console.log("It's a match");
-       }
+  
+
+    const CommonFights =
+        selectedFighter &&
+        matchingFighter &&
+        selectedFighter.fights?.filter((fight) =>
+            matchingFighter.fights?.includes(fight)
+        );
+
+    CommonFights &&
+        console.log("AN ARRAY OF COMMON FIGHTS IDs", CommonFights);
+
+   
+const commonFightsIds = CommonFights || []; // Ensure it's an array
+const filteredFights = fights.filter((fight) =>
+    commonFightsIds.includes(fight.id)
+);
+
+console.log("filteredFights", filteredFights )
+
+
+filteredFights.map((fight) =>console.log(fight.between))
 
 
     return (
@@ -60,8 +72,17 @@ function Home() {
             <SearchBar setMatchingFighter={setMatchingFighter} />
             <Map setSelectedFighter={setSelectedFighter} />
 
-             {isSameFighter ? null : haveCommonFights ? <CommonFightsCard /> : null}
-
+            {CommonFights?.length > 0 && !isSameFighter && (
+                <CommonFightsCard
+                    setFights={setFights}
+                    win={filteredFights[0]?.win}
+                    between={filteredFights[0]?.between}
+                    date={filteredFights[0]?.date}
+                    rounds={filteredFights[0]?.rounds}
+                    time={filteredFights[0]?.time}
+                    by={filteredFights[0]?.by}
+                />
+            )}
 
             {selectedFighter && (
                 <div

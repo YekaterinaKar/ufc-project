@@ -12,7 +12,7 @@ const fighterSchema = new Schema({
    
     ranking: { type: String, required: true },
     record: { type: String, required: true },
-    fights: {type: String, required: false}
+    fights: {type: [String], required: false}
     
 });
  

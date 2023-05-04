@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
-export default function CommonFightsCard({between, win, date, rounds, time, by}) {
+export default function CommonFightsCard({between, win, date, rounds, time, by, setFights, foundObject}) {
     const [isVisible, setIsVisible] = useState(true);
 
     const handleClose = () => {
         setIsVisible(false);
     };
 
- const [fights, setFights] = useState([]);
+ //const [fights, setFights] = useState([]);
 
  useEffect(() => {
      async function fetchFights() {
@@ -23,7 +23,7 @@ export default function CommonFightsCard({between, win, date, rounds, time, by})
      fetchFights();
  }, []);
 
- console.log("Fights", fights)
+
  
 
  return (

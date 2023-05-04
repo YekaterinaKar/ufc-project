@@ -3,7 +3,8 @@ import FighterImage from "../FighterImage/FighterImage";
 
 
 export default function FighterCard({name, country, weight, image, height, ranking,  record, fights}) {
-   
+
+    //const foundObject = fights.find((fight) => fight.id === "A");
  
 
     return (
