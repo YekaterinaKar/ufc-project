@@ -33,6 +33,7 @@ function Home() {
         matchingFighter &&
         selectedFighter._id === matchingFighter._id;
 
+    // Just console.logs
 
     selectedFighter && selectedFighter.fights
         ? console.log("Selected Fighter fights:", selectedFighter.fights)
@@ -43,7 +44,7 @@ function Home() {
 
     fights ? console.log("fights arry of objects", fights) : null;
 
-  
+    //////////////////////////////////////////////
 
     const CommonFights =
         selectedFighter &&
@@ -55,16 +56,28 @@ function Home() {
     CommonFights &&
         console.log("AN ARRAY OF COMMON FIGHTS IDs", CommonFights);
 
-   
-const commonFightsIds = CommonFights || []; // Ensure it's an array
-const filteredFights = fights.filter((fight) =>
-    commonFightsIds.includes(fight.id)
+
+
+const commonFightsArray = fights.filter((fight) =>
+    CommonFights.includes(fight.id)
 );
 
-console.log("filteredFights", filteredFights )
+console.log("commonFightsArray", commonFightsArray);
 
 
-filteredFights.map((fight) =>console.log(fight.between))
+   const commonFight = CommonFights?.join(", "); // returns strings joing by comma out of an array, if only 1 string it just gets returned
+    console.log("COMMON FIGHTS:", commonFight);
+
+
+
+
+    // I need to find an object which id === one of elements of an array .
+
+    const foundObject = fights.find((fight) => fight.id === commonFight); // find only finds me the first mathing result  !!! filter!!!
+    console.log("Found Object", foundObject); 
+
+/*fights.forEach((fight)=> haveCommonFights?.find((commonFight) => fight.id===commonFight) ) */
+
 
 
     return (
@@ -75,12 +88,12 @@ filteredFights.map((fight) =>console.log(fight.between))
             {CommonFights?.length > 0 && !isSameFighter && (
                 <CommonFightsCard
                     setFights={setFights}
-                    win={filteredFights[0]?.win}
-                    between={filteredFights[0]?.between}
-                    date={filteredFights[0]?.date}
-                    rounds={filteredFights[0]?.rounds}
-                    time={filteredFights[0]?.time}
-                    by={filteredFights[0]?.by}
+                    win={foundObject?.win}
+                    between={foundObject?.between}
+                    date={foundObject?.date}
+                    rounds={foundObject?.rounds}
+                    time={foundObject?.time}
+                    by={foundObject?.by}
                 />
             )}
 
