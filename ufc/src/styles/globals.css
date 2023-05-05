@@ -1,4 +1,31 @@
 body {
-  background-color: #E0FFFF;
+  background-color:#dfeefa ;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+button[data-fighter-id] {
+  
+    border-radius: 10px;
+   
+  
+   background-color: "#E0FFFF";
+  border: none;
+  font-weight: bold;
+  font-family: Helvetica Neue,Arial,Helvetica,sans-serif;
+}
+
+
+
+.lightning {
+  position: relative;
+  display: inline-block;
+  animation: lightning 0.2s ease-out infinite;
+}
+
+@keyframes lightning {
+  0% {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #f7c08a, 0 0 30px #f7c08a, 0 0 40px #f7c08a, 0 0 55px #f7c08a, 0 0 75px #f7c08a;
+  }
+  100% {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #f7c08a, 0 0 30px #f7c08a, 0 0 40px #f7c08a, 0 0 55px #f7c08a, 0 0 75px transparent;
+  }
 }

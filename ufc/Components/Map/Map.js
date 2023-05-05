@@ -1,11 +1,14 @@
 import Head from "next/head";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Script from "next/script";
 import mapboxgl from "mapbox-gl";
+import FighterCard from "../FighterCard/FighterCard";
 
-
-const Map = () => {
+const Map = ({setSelectedFighter}) => {
     const [fighterLocations, setFighterLocations] = useState([]); // state updating coordinates
+   
+     
+    const ref = useRef(null);
 
     // useEffect fetching marker`s coordinates from DB
     useEffect(() => {
@@ -14,6 +17,7 @@ const Map = () => {
                 const response = await fetch("api/fighters");
                 const data = await response.json();
                 setFighterLocations(data);
+                
             } catch (error) {
                 console.log(error);
             }
@@ -22,7 +26,7 @@ const Map = () => {
         fetchFighterLocations();
     }, []);
 
-    //useEffect fetching the map 
+    //useEffect fetching the map
     useEffect(() => {
         mapboxgl.accessToken =
             "pk.eyJ1IjoieWVrYXRlcmluYWthciIsImEiOiJjbGdtOGN4ajYwM2JkM2ZvZXVmNDhuY3Q2In0.ll321VCFIp0yuT7np-GEnA";
@@ -39,27 +43,45 @@ const Map = () => {
             map.setLayoutProperty("country-label", "visibility");
         });
 
+        ref.current.addEventListener("click", (e) => {
+            
+            if (e.target?.hasAttribute("data-fighter-id")) {
+                const fighterId = e.target.dataset.fighterId;
+                console.log("fighter button clicked", fighterId);
+                const selectedFighter = fighterLocations.find(
+                    (fighter) => fighter._id === fighterId
+                );
+                setSelectedFighter(selectedFighter);
+            }
+        });
 
-        console.log(fighterLocations) // the whole array of objects with all keys
 
-       fighterLocations.forEach((fighter) => {
-           const marker = new mapboxgl.Marker({ color: "yellow" })
-               .setLngLat(fighter.coordinates)
-               .addTo(map);
+        console.log("fighterLocation", fighterLocations); // the whole array of objects with all keys
 
-           const popup = new mapboxgl.Popup({ offset: 25 }) // sets pop ups
-               .setHTML(
-                   `<h3>${fighter.name}</h3><a href="${fighter.moreInfoUrl}">More info</a>`
-               )
-               .setMaxWidth("250px");
+        fighterLocations.forEach((fighter) => {
+            const marker = new mapboxgl.Marker({ color: "yellow" })
+                .setLngLat(fighter.coordinates)
+                .addTo(map);
 
-           marker.setPopup(popup);
-       });
+            const popup = new mapboxgl.Popup({ offset: 25 }) // sets pop ups
+                .setHTML(
+                    ` <h3>${fighter.name}</h3>
+                       <button  data-fighter-id="${fighter._id}">
+                           More info
+                       </button>
+                       `
+                )
+                .setMaxWidth("200px")
+                
 
+            marker.setPopup(popup);
+        });
     }, [fighterLocations]);
 
+   
+
     return (
-        <>
+        <div ref={ref}>
             <Head>
                 <meta
                     name="viewport"
@@ -76,6 +98,7 @@ const Map = () => {
             />
             <div
                 style={{
+                    
                     position: "relative",
                     width: "700px",
                     height: "700px",
@@ -92,7 +115,7 @@ const Map = () => {
                     }}
                 ></div>
             </div>
-        </>
+        </div>
     );
 };
 

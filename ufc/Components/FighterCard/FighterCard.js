@@ -1,53 +1,37 @@
 import FighterImage from "../FighterImage/FighterImage";
 
-import { useState, useEffect } from "react";
 
-export default function FighterCard() {
-    const [fighters, setFighters] = useState([]);
 
-  useEffect(() => {
-    async function fetchFighters() {
-      try {
-        const res = await fetch('/api/fighters');
-        const data = await res.json();
-        setFighters(data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
+export default function FighterCard({name, country, weight, image, height, ranking,  record, fights}) {
 
-    fetchFighters();
-  }, []);
+    //const foundObject = fights.find((fight) => fight.id === "A");
+ 
 
     return (
         <>
             <section
-                style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "10%",
-                    transform: "translate(-50%, -50%)",
-                    backgroundColor: "#fff",
-                    padding: "20px",
-                    borderRadius: "10px",
-                    boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-                    textAlign: "center",
-                }}
+                
             >
-                <FighterImage />
+                 
+                <FighterImage image={image} />
                 <br />
                 <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
-                    <li>Name: Amanda Nunes</li>
-                    <br />
-                    <li>Country: Brazil</li>
-                    <br />
-                    <li>Weight class: Bandetweight</li>
-                    <br />
-                    <li>age</li>
-                    <br />
-                    <li>height</li>
-                    <br />
-                    <li>win loss records: 23, 5, 1</li>
+                    <li style={{ fontWeight: "bold", fontSize: "20px"}}> {name}</li>
+
+                    
+                    <li style={{ marginTop: "10px" }}>Country: {country} </li>
+
+                    <li style={{ marginTop: "10px" }}>
+                        Weight class: {weight}{" "}
+                    </li>
+
+                    <li style={{ marginTop: "10px" }}>Height: {height} cm</li>
+
+                    <li style={{ marginTop: "10px" }}>Ranking: {ranking} </li>
+
+                    <li style={{ marginTop: "10px" }}>Record:{record} </li>
+
+                    
                 </ul>
             </section>
         </>
