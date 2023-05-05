@@ -7,7 +7,7 @@ module.exports = nextConfig
 
 
 module.exports = {
-  images: {
-    domains: ['dmxg5wxfqgb4u.cloudfront.net'],
-  },
+    images: {
+        domains: ["dmxg5wxfqgb4u.cloudfront.net"],
+    },
 };

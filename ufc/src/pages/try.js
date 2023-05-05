@@ -1,4 +1,5 @@
 
+import YouTube from "react-youtube";
 
 import { useState, useEffect } from 'react';
 import FighterImage from '../../Components/FighterImage/FighterImage';
@@ -24,13 +25,21 @@ function FightersPage() {
 console.log(fighters)
   return (
       <div>
+          <div>
+              {" "}
+              <YouTube videoId="_NJLkTl63FM" />
+          </div>
+
+          <div>
+              <YouTube videoId="UF1DkF28zic" />
+          </div>
           <Image
               src="/My-Jab-Gym-Gloves-original.png"
               alt=""
-              width={500}
-              height={500}
+              width={150}
+              height={150}
           />
-
+          <div style={{ fontSize: "300px" }}>⚡</div>
           <ul
               style={{
                   display: "flex",
@@ -48,9 +57,29 @@ console.log(fighters)
                       {fighter.name}
                   </li>
               ))}
+              <div style={{ fontSize: "200px" }}>⚡</div>
           </ul>
       </div>
   );
 }
 
 export default FightersPage;
+
+/*
+ {
+     CommonFights?.length > 0 && !isSameFighter ? (
+         <div>
+             <CommonFightsCard
+                 isVisible={isVisible}
+                 setFights={setFights}
+                 win={secondFoundObject?.win}
+                 between={secondFoundObject?.between}
+                 date={secondFoundObject?.date}
+                 rounds={secondFoundObject?.rounds}
+                 time={secondFoundObject?.time}
+                 by={secondFoundObject?.by}
+             />
+         </div>
+     ) : null;
+ } 
+ */

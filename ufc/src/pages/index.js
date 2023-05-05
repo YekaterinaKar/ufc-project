@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useSWR from "swr";
 import { useState } from "react";
 import Map from "../../Components/Map/Map";
@@ -11,7 +11,48 @@ function Home() {
     const [selectedFighter, setSelectedFighter] = useState(null);
     const [matchingFighter, setMatchingFighter] = useState(null);
 
+    const [isCardVisible, setIsCardVisible] = useState(true);
+
     const [fights, setFights] = useState([]);
+    const [isVisible, setIsVisible] = useState(true);
+
+    //-----
+    const [commonFightsArray, setCommonFightsArray] = useState([]);
+    const [commonFights, setCommonFights] = useState([]);
+
+    useEffect(() => {
+        async function fetchFights() {
+            try {
+                const res = await fetch("/api/fights");
+                const data = await res.json();
+                console.log("Data from common Fights cards: ", data);
+                setFights(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchFights();
+    }, []);
+
+    useEffect(() => {
+        setCommonFightsArray(
+            fights.filter((fight) => commonFights?.includes(fight.id))
+        );
+    }, [commonFights, fights]);
+
+    useEffect(() => {
+        setCommonFights(
+            selectedFighter &&
+                matchingFighter &&
+                selectedFighter.fights &&
+                matchingFighter.fights
+                ? selectedFighter.fights.filter((fight) =>
+                      matchingFighter.fights.includes(fight)
+                  )
+                : []
+        );
+    }, [selectedFighter, matchingFighter]);
 
     const { data, isLoading } = useSWR("/api/fighters");
     if (isLoading) {
@@ -33,8 +74,6 @@ function Home() {
         matchingFighter &&
         selectedFighter._id === matchingFighter._id;
 
-   
-
     selectedFighter && selectedFighter.fights
         ? console.log("Selected Fighter fights:", selectedFighter.fights)
         : null;
@@ -42,104 +81,46 @@ function Home() {
         ? console.log("Matching fighter fights :", matchingFighter.fights)
         : null;
 
-console.log("all fights from fights collection", fights)
-    
+    console.log("all fights from fights collection", fights);
 
-    const CommonFights =
-        selectedFighter &&
-        matchingFighter &&
-        selectedFighter.fights &&
-        matchingFighter.fights
-            ? selectedFighter.fights.filter((fight) =>
-                  matchingFighter.fights.includes(fight)
-              )
-            : [];
+    commonFights && console.log("AN ARRAY OF COMMON FIGHTS IDs", commonFights);
 
+    console.log("commonFightsArray", commonFightsArray);
 
-    CommonFights &&
-        console.log("AN ARRAY OF COMMON FIGHTS IDs", CommonFights);
-
-   
-
-const commonFightsArray = fights.filter((fight) =>
-    CommonFights?.includes(fight.id)
-);
-
-console.log("commonFightsArray", commonFightsArray);
-
-
-
- /*  const commonFight = CommonFights?.join(", "); // returns strings joing by comma out of an array, if only 1 string it just gets returned
+    /*  const commonFight = CommonFights?.join(", "); // returns strings joing by comma out of an array, if only 1 string it just gets returned
     console.log("COMMON FIGHT:", commonFight);
 
 */
 
+    const foundObject = fights.find((fight) => fight.id === commonFights[0]);
+    console.log("Found Object", foundObject);
 
-    const foundObject = fights.find((fight) => fight.id === CommonFights[0]); 
-    console.log("Found Object", foundObject); 
-
-const secondFoundObject = fights.find((fight) => fight.id === CommonFights[1]);
-console.log("secondFoundObject", secondFoundObject)
-
-
-
-
+    const secondFoundObject = fights.find(
+        (fight) => fight.id === commonFights[1]
+    );
+    console.log("secondFoundObject", secondFoundObject);
 
     return (
         <>
             <SearchBar setMatchingFighter={setMatchingFighter} />
             <Map setSelectedFighter={setSelectedFighter} />
 
-            <div
-                style={{
-                    position: "fixed",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, 50%)",
-                    backgroundColor: "#fff",
-                    padding: "20px",
-                    borderRadius: "10px",
-                    boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-                    textAlign: "center",
-                }}
-            >
-                {CommonFights?.length > 0 && !isSameFighter && (
-                    <CommonFightsCard
-                        setFights={setFights}
-                        win={foundObject?.win}
-                        between={foundObject?.between}
-                        date={foundObject?.date}
-                        rounds={foundObject?.rounds}
-                        time={foundObject?.time}
-                        by={foundObject?.by}
-                    />
-                )}
-            </div>
-            <div
-                style={{
-                    position: "fixed",
-                    top: "50%",
-                    left: "30%",
-                    transform: "translate(-50%, 50%)",
-                    backgroundColor: "#fff",
-                    padding: "20px",
-                    borderRadius: "10px",
-                    boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-                    textAlign: "center",
-                }}
-            >
-                {CommonFights?.length > 0 && !isSameFighter && (
-                    <CommonFightsCard
-                        setFights={setFights}
-                        win={secondFoundObject?.win}
-                        between={secondFoundObject?.between}
-                        date={secondFoundObject?.date}
-                        rounds={secondFoundObject?.rounds}
-                        time={secondFoundObject?.time}
-                        by={secondFoundObject?.by}
-                    />
-                )}
-            </div>
+            {commonFights?.length > 0 && !isSameFighter ? (
+                <div>
+                    {commonFightsArray?.map((commonFight) => (
+                        <CommonFightsCard
+                            key={commonFight.id}
+                            setFights={setFights}
+                            win={commonFight?.win}
+                            between={commonFight?.between}
+                            date={commonFight?.date}
+                            rounds={commonFight?.rounds}
+                            time={commonFight?.time}
+                            by={commonFight?.by}
+                        />
+                    ))}
+                </div>
+            ) : null}
 
             {selectedFighter && (
                 <div
