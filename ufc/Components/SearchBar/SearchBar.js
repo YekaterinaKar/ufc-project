@@ -4,11 +4,11 @@ import FighterImage from "../FighterImage/FighterImage";
 
 export default function SearchBar({setMatchingFighter}) {
     const [searchValue, setSearchValue] = useState("");
-    //const [matchingFighter, setMatchingFighter] = useState(null);
+    
 
     const handleInputChange = (event) => {
         setSearchValue(event.target.value);
-      //  setMatchingFighter(null); // reset match found when input changes (but i need it just  on search button click)
+     
     };
 
     const handleFormSubmit = (event) => {

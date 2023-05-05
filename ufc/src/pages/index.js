@@ -11,12 +11,10 @@ function Home() {
     const [selectedFighter, setSelectedFighter] = useState(null);
     const [matchingFighter, setMatchingFighter] = useState(null);
 
-    const [isCardVisible, setIsCardVisible] = useState(true);
 
     const [fights, setFights] = useState([]);
-    const [isVisible, setIsVisible] = useState(true);
+    
 
-    //-----
     const [commonFightsArray, setCommonFightsArray] = useState([]);
     const [commonFights, setCommonFights] = useState([]);
 
@@ -67,7 +65,7 @@ function Home() {
             </>
         );
     }
-    console.log("From Index: ", data);
+    console.log("Fighters Index: ", data);
 
     const isSameFighter =
         selectedFighter &&
@@ -81,24 +79,13 @@ function Home() {
         ? console.log("Matching fighter fights :", matchingFighter.fights)
         : null;
 
-    console.log("all fights from fights collection", fights);
+    console.log("fights from DB", fights);
 
-    commonFights && console.log("AN ARRAY OF COMMON FIGHTS IDs", commonFights);
+   console.log("commonFights", commonFights);
 
     console.log("commonFightsArray", commonFightsArray);
 
-    /*  const commonFight = CommonFights?.join(", "); // returns strings joing by comma out of an array, if only 1 string it just gets returned
-    console.log("COMMON FIGHT:", commonFight);
 
-*/
-
-    const foundObject = fights.find((fight) => fight.id === commonFights[0]);
-    console.log("Found Object", foundObject);
-
-    const secondFoundObject = fights.find(
-        (fight) => fight.id === commonFights[1]
-    );
-    console.log("secondFoundObject", secondFoundObject);
 
     return (
         <>

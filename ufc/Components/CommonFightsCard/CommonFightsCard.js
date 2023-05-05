@@ -16,23 +16,7 @@ export default function CommonFightsCard({
         setIsVisible(false);
     };
 
-    //const [fights, setFights] = useState([]);
-
-    /*useEffect(() => {
-        async function fetchFights() {
-            try {
-                const res = await fetch("/api/fights");
-                const data = await res.json();
-                console.log("Data from common Fights cards: ", data);
-                setFights(data);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        fetchFights();
-    }, []);
-*/
+ 
     return (
         <>
             {isVisible && (
