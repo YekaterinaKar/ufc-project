@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import YouTube from "react-youtube";
+
 import Video from "../../../Components/Video/Video";
 import CommonFightsCard from "../../../Components/CommonFightsCard/CommonFightsCard";
-
+import Image from "next/image";
+import FighterImage from "../../../Components/FighterImage/FighterImage";
 
 function FightPage() {
     const router = useRouter();
@@ -28,7 +29,14 @@ function FightPage() {
     }, [slug]);
 
     if (!fight) {
-        return <div>Loading...</div>;
+        return   <Image
+                    src="/Jabber.png"
+                    alt=""
+                    width={500}
+                    height={500}
+                />
+         
+        
     }
 
     const handleBackClick = () => {
@@ -36,47 +44,28 @@ function FightPage() {
     };
 
     return (
-        <div style={{  padding: "20px" }}>
+        <div style={{ padding: "20px" }}>
             <h1
                 style={{
-                    
                     fontSize: "36px",
                     marginBottom: "10px",
+                    textAlign: "center",
                 }}
             >
                 {fight.between}
             </h1>
             <Video video={fight.video} />
-            <CommonFightsCard
-                key={fight.id}
-                win={fight.win}
-                between={fight.between}
-                date={fight.date}
-                rounds={fight.rounds}
-                time={fight.time}
-                by={fight.by}
-                id={fight.id}
-            />
+           
+            <h2>Leave a comment</h2>
             <textarea
                 style={{
                     padding: "10px",
                     marginBottom: "20px",
                     width: "100%",
-                    minHeight: "200px",
+                    minHeight: "100px",
                 }}
-                aria-label="Comments"
+                aria-label="Leave a comment"
             ></textarea>
-            <button
-                style={{
-                    backgroundColor: "grey",
-                    color: "white",
-                    padding: "10px 20px",
-                    borderRadius: "5px",
-                    marginRight: "10px",
-                }}
-            >
-                Submit
-            </button>
             <button
                 style={{
                     backgroundColor: "grey",
@@ -87,6 +76,17 @@ function FightPage() {
                 onClick={handleBackClick}
             >
                 Back
+            </button>
+            <button
+                style={{
+                    backgroundColor: "grey",
+                    color: "white",
+                    padding: "10px 20px",
+                    borderRadius: "5px",
+                    marginRight: "10px",
+                }}
+            >
+                Submit
             </button>
         </div>
     );
