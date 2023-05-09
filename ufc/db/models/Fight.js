@@ -9,6 +9,7 @@ const fightSchema = new Schema({
     rounds: { type: Number, required: false },
     time: { type: String, required: false },
     by: { type: String, required: false },
+    video: { type: String, required: false },
 });
 
 const Fight =
