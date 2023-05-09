@@ -1,16 +1,19 @@
 import FighterImage from "../FighterImage/FighterImage";
 import StarButton from "../StarButton/StarButton";
-
+import { useState } from "react";
 
 
 export default function FighterCard({name, country, weight, image, height, ranking,  record, dob}) {
 
    
-
+ const [isFavourite, setIsFavourite] = useState(false);
+ const addFavourite = () => {
+     setIsFavourite(true);
+ };
     return (
         <>
             <section>
-                <StarButton/>
+                <StarButton onClick={addFavourite} filled={isFavourite} />
                 <FighterImage image={image} />
                 <br />
                 <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>

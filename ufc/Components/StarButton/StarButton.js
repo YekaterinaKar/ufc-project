@@ -1,10 +1,13 @@
 import { useState } from "react";
 
-export default function StarButton() {
+export default function StarButton({ addFavourite }) {
     const [isFilled, setIsFilled] = useState(false);
 
     const handleClick = () => {
         setIsFilled(!isFilled);
+        if (addFavourite && !isFilled) {
+            addFavourite();
+        }
     };
 
     return (

@@ -52,8 +52,9 @@ export default function CommonFightsCard({
                     >
                         X
                     </button>
-                    <StarButton />
+                    
                     <br></br>
+                    
                     <ul
                         style={{ listStyle: "none", padding: "0", margin: "0" }}
                     >

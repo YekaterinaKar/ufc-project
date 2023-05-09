@@ -7,6 +7,7 @@ import CommonFightsCard from "../../../Components/CommonFightsCard/CommonFightsC
 import Image from "next/image";
 import FighterImage from "../../../Components/FighterImage/FighterImage";
 import Header from "../../../Components/Header/Header";
+import StarButton from "../../../Components/StarButton/StarButton";
 function FightPage() {
     const router = useRouter();
     const { slug } = router.query;
@@ -76,8 +77,7 @@ function FightPage() {
  
 
     return (
-        <div>
-            
+        <div style={{ position: "relative" }}>
             <div style={{ padding: "20px" }}>
                 <h3
                     style={{
@@ -86,16 +86,17 @@ function FightPage() {
                         textAlign: "center",
                     }}
                 >
-                    {fight.between}
+                    {fight.between} <StarButton />
                 </h3>
-               <CommonFightsCard between ={fight.between}
-               id = {fight.id}
-               win ={fight.win}
-               date = {fight.date}
-               rounds = {fight.rounds}
-               time = {fight.time}
-               by = {fight.by}
-               /> 
+                <div
+                    style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "10px",
+                        transform: "translateY(-50%)",
+                    }}
+                ></div>
+
                 <Video video={fight.video} />
 
                 <h2>Leave a comment</h2>
@@ -134,11 +135,42 @@ function FightPage() {
                 >
                     Back
                 </button>
-                <ul style={{ listStyle: "none" }}>
-                    {fight.comments?.map((comment, index) => {
-                        return <li key={index}>{comment}</li>;
-                    })}
-                </ul>
+                <section>
+                    <ul style={{ listStyle: "none" }}>
+                        {fight.comments?.map((comment, index) => {
+                            return (
+                                <li
+                                    key={index}
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "10px",
+                                        padding: "10px",
+                                        margin: "10px 0",
+                                        backgroundColor: "#F5F5F5",
+                                        borderRadius: "5px",
+                                        boxShadow: "0 0 5px rgba(0, 0, 0, 0.1)",
+                                        position: "relative",
+                                    }}
+                                >
+                                    {comment}
+                                    <button
+                                        style={{
+                                            position: "absolute",
+                                            top: "5px",
+                                            right: "5px",
+                                            backgroundColor: "transparent",
+                                            border: "none",
+                                            cursor: "pointer",
+                                        }}
+                                    >
+                                        x
+                                    </button>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </section>
 
                 <div
                     style={{
@@ -147,18 +179,22 @@ function FightPage() {
                         marginBottom: "10px",
                     }}
                 >
-                    <div style={{ flex: 1 }}>
-                        <div
-                            style={{
-                                fontSize: "24px",
-                                fontWeight: "bold",
-                                marginBottom: "5px",
-                            }}
-                        >
-                            {fairPercentage}%
+                    <h3>Do you think the fight was judged fair?</h3>
+
+                    <button onClick={() => setFairVotes((prev) => prev + 1)}>
+                        <div style={{ flex: 1 }}>
+                            <div
+                                style={{
+                                    fontSize: "24px",
+                                    fontWeight: "bold",
+                                    marginBottom: "5px",
+                                }}
+                            >
+                                {fairPercentage}%
+                            </div>
+                            <div style={{ fontSize: "16px" }}>Fair</div>
                         </div>
-                        <div style={{ fontSize: "16px" }}>Fair</div>
-                    </div>
+                    </button>
                     <div
                         style={{
                             height: "50px",
@@ -167,29 +203,68 @@ function FightPage() {
                             margin: "0 10px",
                         }}
                     ></div>
-                    <div style={{ flex: 1 }}>
-                        <div
-                            style={{
-                                fontSize: "24px",
-                                fontWeight: "bold",
-                                marginBottom: "5px",
-                            }}
-                        >
-                            {notFairPercentage}%
+                    <button onClick={() => setNotFairVotes((prev) => prev + 1)}>
+                        <div style={{ flex: 1 }}>
+                            <div
+                                style={{
+                                    fontSize: "24px",
+                                    fontWeight: "bold",
+                                    marginBottom: "5px",
+                                }}
+                            >
+                                {notFairPercentage}%
+                            </div>
+                            <div style={{ fontSize: "16px" }}>Not Fair</div>
                         </div>
-                        <div style={{ fontSize: "16px" }}>Not Fair</div>
-                    </div>
+                    </button>
                 </div>
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginBottom: "10px",
+                    }}
+                >
+                    <h3>Should the fighters get a rematch?</h3>
 
-                <button onClick={() => setFairVotes((prev) => prev + 1)}>
-                    Fair
-                </button>
-                <button onClick={() => setNotFairVotes((prev) => prev + 1)}>
-                    Not Fair
-                </button>
+                    <button onClick={() => setFairVotes((prev) => prev + 1)}>
+                        <div style={{ flex: 1 }}>
+                            <div
+                                style={{
+                                    fontSize: "24px",
+                                    fontWeight: "bold",
+                                    marginBottom: "5px",
+                                }}
+                            >
+                                {fairPercentage}%
+                            </div>
+                            <div style={{ fontSize: "16px" }}>Fair</div>
+                        </div>
+                    </button>
+                    <div
+                        style={{
+                            height: "50px",
+                            width: "5px",
+                            backgroundColor: "black",
+                            margin: "0 10px",
+                        }}
+                    ></div>
+                    <button onClick={() => setNotFairVotes((prev) => prev + 1)}>
+                        <div style={{ flex: 1 }}>
+                            <div
+                                style={{
+                                    fontSize: "24px",
+                                    fontWeight: "bold",
+                                    marginBottom: "5px",
+                                }}
+                            >
+                                {notFairPercentage}%
+                            </div>
+                            <div style={{ fontSize: "16px" }}>Not Fair</div>
+                        </div>
+                    </button>
+                </div>
             </div>
-
-            
         </div>
     );
 }
