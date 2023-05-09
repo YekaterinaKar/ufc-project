@@ -2,23 +2,23 @@ import FighterImage from "../FighterImage/FighterImage";
 
 
 
-export default function FighterCard({name, country, weight, image, height, ranking,  record, fights}) {
+export default function FighterCard({name, country, weight, image, height, ranking,  record, dob}) {
 
-    //const foundObject = fights.find((fight) => fight.id === "A");
- 
+   
 
     return (
         <>
-            <section
-                
-            >
-                 
+            <section>
                 <FighterImage image={image} />
                 <br />
                 <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
-                    <li style={{ fontWeight: "bold", fontSize: "20px"}}> {name}</li>
+                    <li style={{ fontWeight: "bold", fontSize: "20px" }}>
+                        {" "}
+                        {name}
+                    </li>
 
-                    
+                    <li style={{ marginTop: "10px" }}>Age: {dob} </li>
+
                     <li style={{ marginTop: "10px" }}>Country: {country} </li>
 
                     <li style={{ marginTop: "10px" }}>
@@ -30,8 +30,6 @@ export default function FighterCard({name, country, weight, image, height, ranki
                     <li style={{ marginTop: "10px" }}>Ranking: {ranking} </li>
 
                     <li style={{ marginTop: "10px" }}>Record:{record} </li>
-
-                    
                 </ul>
             </section>
         </>

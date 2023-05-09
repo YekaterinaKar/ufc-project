@@ -91,6 +91,7 @@ function Home() {
         <>
             <SearchBar setMatchingFighter={setMatchingFighter} />
             <Map setSelectedFighter={setSelectedFighter} />
+             
 
             {commonFights?.length > 0 && !isSameFighter ? (
                 <div>
@@ -104,10 +105,12 @@ function Home() {
                             rounds={commonFight?.rounds}
                             time={commonFight?.time}
                             by={commonFight?.by}
+                            id={commonFight?.id}
                         />
                     ))}
                 </div>
             ) : null}
+            
 
             {selectedFighter && (
                 <div
@@ -130,6 +133,7 @@ function Home() {
                     <FighterCard
                         image={selectedFighter.image}
                         name={selectedFighter.name}
+                        dob = {selectedFighter.DOB}
                         country={selectedFighter.country}
                         record={selectedFighter.record}
                         weight={selectedFighter.weight}
@@ -161,6 +165,7 @@ function Home() {
                     <FighterCard
                         image={matchingFighter.image}
                         name={matchingFighter.name}
+                        dob={matchingFighter.DOB}
                         country={matchingFighter.country}
                         weight={matchingFighter.weight}
                         height={matchingFighter.height}
