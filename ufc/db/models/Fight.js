@@ -10,6 +10,7 @@ const fightSchema = new Schema({
     time: { type: String, required: false },
     by: { type: String, required: false },
     video: { type: String, required: false },
+    comments: {type: [String], required: false}
 });
 
 const Fight =

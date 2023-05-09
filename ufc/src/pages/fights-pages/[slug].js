@@ -55,7 +55,7 @@ function FightPage() {
                 {fight.between}
             </h1>
             <Video video={fight.video} />
-           
+
             <h2>Leave a comment</h2>
             <textarea
                 style={{
@@ -63,6 +63,7 @@ function FightPage() {
                     marginBottom: "20px",
                     width: "100%",
                     minHeight: "100px",
+                    resize: "none",
                 }}
                 aria-label="Leave a comment"
             ></textarea>
@@ -88,6 +89,11 @@ function FightPage() {
             >
                 Submit
             </button>
+            <ul style={{listStyle: "none"}}>
+                {fight.comments.map((comment, index) => {
+                    return <li key={index}>{comment}</li>;
+                })}
+            </ul>
         </div>
     );
 }
