@@ -11,6 +11,9 @@ export default function StarButton() {
         <button
             onClick={handleClick}
             style={{
+                position: "absolute",
+                top: "10px",
+                left: "10px",
                 border: "none",
                 background: "none",
                 outline: "none",

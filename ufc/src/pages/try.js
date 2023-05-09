@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import FighterImage from '../../Components/FighterImage/FighterImage';
 import Flag from '../../Components/Flag/Flag';
 import Image from 'next/image';
+import Header from "../../Components/Header/Header";
 
 function FightersPage() {
   const [fighters, setFighters] = useState([]);
@@ -25,14 +26,7 @@ function FightersPage() {
 console.log(fighters)
   return (
       <div>
-          <div>
-              {" "}
-              <YouTube videoId="_NJLkTl63FM" />
-          </div>
-
-          <div>
-              <YouTube videoId="UF1DkF28zic" />
-          </div>
+     <Header/>
           <Image
               src="/My-Jab-Gym-Gloves-original.png"
               alt=""

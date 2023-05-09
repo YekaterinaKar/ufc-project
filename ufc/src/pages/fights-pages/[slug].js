@@ -6,7 +6,7 @@ import Video from "../../../Components/Video/Video";
 import CommonFightsCard from "../../../Components/CommonFightsCard/CommonFightsCard";
 import Image from "next/image";
 import FighterImage from "../../../Components/FighterImage/FighterImage";
-
+import Header from "../../../Components/Header/Header";
 function FightPage() {
     const router = useRouter();
     const { slug } = router.query;
@@ -77,8 +77,9 @@ function FightPage() {
 
     return (
         <div>
+            
             <div style={{ padding: "20px" }}>
-                <h1
+                <h3
                     style={{
                         fontSize: "36px",
                         marginBottom: "10px",
@@ -86,7 +87,7 @@ function FightPage() {
                     }}
                 >
                     {fight.between}
-                </h1>
+                </h3>
                <CommonFightsCard between ={fight.between}
                id = {fight.id}
                win ={fight.win}

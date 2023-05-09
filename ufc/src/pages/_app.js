@@ -1,6 +1,6 @@
 import "@component/styles/globals.css";
 import { SWRConfig } from "swr";
-
+import Header from "../../Components/Header/Header";
 
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -16,6 +16,7 @@ export default function App({ Component, pageProps }) {
             }}
         >
             <SWRConfig value={{ fetcher }}>
+                <Header/>
                 <Component {...pageProps} />
              
             </SWRConfig>
