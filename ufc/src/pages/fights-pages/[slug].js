@@ -110,16 +110,64 @@ function FightPage() {
         });
     };
 
-    const handleNotFairVote = () => {
+    const handleNotFairVote = async() => {
+        const unfair = notFairVotes + 1;
         setNotFairVotes((prevVotes) => prevVotes + 1);
+         const res = await fetch("/api/fights", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: slug,
+                comment: comment,
+                fairVotes: fairVotes,
+                notFairVotes: unfair,
+                rematchVotes: rematchVotes,
+                noRematchVotes: noRematchVotes,
+            }),
+        });
     };
 
-    const handleRematchVote = () => {
+    const handleRematchVote = async () => {
+        const rematch = rematchVotes+1
+        
         setRematchVotes((prevVotes) => prevVotes + 1);
+         const res = await fetch("/api/fights", {
+             method: "POST",
+             headers: {
+                 "Content-Type": "application/json",
+             },
+             body: JSON.stringify({
+                 id: slug,
+                 comment: comment,
+                 fairVotes: fairVotes,
+                 notFairVotes: notFairVotes,
+                 rematchVotes: rematch,
+                 noRematchVotes: noRematchVotes,
+             }),
+         });
     };
 
-    const handleNoRematchVote = () => {
+    const handleNoRematchVote = async () => {
+        const norematch = noRematchVotes+1
+
         setNoRematchVotes((prevVotes) => prevVotes + 1);
+        const res = await fetch("/api/fights", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: slug,
+                comment: comment,
+                fairVotes: fairVotes,
+                notFairVotes: notFairVotes,
+                rematchVotes: rematchVotes,
+                noRematchVotes: norematch,
+            }),
+        });
+
     };
 
     if (!fight) {
