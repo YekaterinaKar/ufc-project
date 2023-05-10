@@ -6,6 +6,7 @@ import FighterImage from '../../Components/FighterImage/FighterImage';
 import Flag from '../../Components/Flag/Flag';
 import Image from 'next/image';
 import Header from "../../Components/Header/Header";
+import Voting from "../../Components/Voting/Voting";
 
 function FightersPage() {
   const [fighters, setFighters] = useState([]);
@@ -27,6 +28,7 @@ console.log(fighters)
   return (
       <div>
      <Header/>
+     <Voting/>
           <Image
               src="/My-Jab-Gym-Gloves-original.png"
               alt=""

@@ -8,7 +8,7 @@ import Image from "next/image";
 import FighterImage from "../../../Components/FighterImage/FighterImage";
 import Header from "../../../Components/Header/Header";
 
-function FightPage({ item }) {
+function FightPage() {
     const router = useRouter();
     const { slug } = router.query;
 
@@ -20,8 +20,6 @@ function FightPage({ item }) {
     const [rematchVotes, setRematchVotes] = useState(0);
     const [noRematchVotes, setNoRematchVotes] = useState(0);
 
-
-
     useEffect(() => {
         async function fetchFight() {
             try {
@@ -31,6 +29,10 @@ function FightPage({ item }) {
                 console.log("Data from fight page: ", filteredFight);
                 setFight(filteredFight);
                 setComments(filteredFight.comments || []);
+                setFairVotes(filteredFight.fair);
+                setNotFairVotes(filteredFight.unfair);
+                setRematchVotes(filteredFight.rematch);
+                setNoRematchVotes(filteredFight.norematch);
             } catch (error) {
                 console.error(error);
             }
@@ -46,7 +48,6 @@ function FightPage({ item }) {
     const handleCommentChange = (event) => {
         setComment(event.target.value);
     };
-
     const handleSubmit = async () => {
         if (comment !== "") {
             const res = await fetch("/api/fights", {
@@ -57,29 +58,69 @@ function FightPage({ item }) {
                 body: JSON.stringify({
                     id: slug,
                     comment: comment,
+                    fairVotes: fairVotes,
+                    notFairVotes: notFairVotes,
+                    rematchVotes: rematchVotes,
+                    noRematchVotes: noRematchVotes,
                 }),
             });
 
             const updatedFight = await res.json();
             setFight(updatedFight);
             setComment("");
+            setFairVotes(updatedFight.fair);
+            setNotFairVotes(updatedFight.unfair);
+            setRematchVotes(updatedFight.rematch);
+            setNoRematchVotes(updatedFight.norematch);
         }
     };
+
     const totalVotes = fairVotes + notFairVotes;
     const fairPercentage =
         totalVotes === 0 ? 0 : Math.round((fairVotes / totalVotes) * 100);
     const notFairPercentage =
         totalVotes === 0 ? 0 : Math.round((notFairVotes / totalVotes) * 100);
 
-        const totalRematchVotes = rematchVotes + noRematchVotes; // Total rematch votes
-        const rematchPercentage =
-            totalRematchVotes === 0
-                ? 0
-                : Math.round((rematchVotes / totalRematchVotes) * 100);
-        const noRematchPercentage =
-            totalRematchVotes === 0
-                ? 0
-                : Math.round((noRematchVotes / totalRematchVotes) * 100);
+    const totalRematchVotes = rematchVotes + noRematchVotes;
+    const rematchPercentage =
+        totalRematchVotes === 0
+            ? 0
+            : Math.round((rematchVotes / totalRematchVotes) * 100);
+    const noRematchPercentage =
+        totalRematchVotes === 0
+            ? 0
+            : Math.round((noRematchVotes / totalRematchVotes) * 100);
+
+    const handleFairVote = async () => {
+        const fair = fairVotes + 1;
+        setFairVotes((prevVotes) => prevVotes + 1);
+        const res = await fetch("/api/fights", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: slug,
+                comment: comment,
+                fairVotes: fair,
+                notFairVotes: notFairVotes,
+                rematchVotes: rematchVotes,
+                noRematchVotes: noRematchVotes,
+            }),
+        });
+    };
+
+    const handleNotFairVote = () => {
+        setNotFairVotes((prevVotes) => prevVotes + 1);
+    };
+
+    const handleRematchVote = () => {
+        setRematchVotes((prevVotes) => prevVotes + 1);
+    };
+
+    const handleNoRematchVote = () => {
+        setNoRematchVotes((prevVotes) => prevVotes + 1);
+    };
 
     if (!fight) {
         return <Image src="/Jabber.png" alt="" width={500} height={500} />;
@@ -96,7 +137,6 @@ function FightPage({ item }) {
                     }}
                 >
                     {fight.between}{" "}
-                   
                 </h3>
                 <div
                     style={{
@@ -191,7 +231,7 @@ function FightPage({ item }) {
                 >
                     <h3>Do you think the fight was judged fair?</h3>
 
-                    <button onClick={() => setFairVotes((prev) => prev + 1)}>
+                    <button onClick={handleFairVote}>
                         <div style={{ flex: 1 }}>
                             <div
                                 style={{
@@ -213,7 +253,7 @@ function FightPage({ item }) {
                             margin: "0 10px",
                         }}
                     ></div>
-                    <button onClick={() => setNotFairVotes((prev) => prev + 1)}>
+                    <button onClick={handleNotFairVote}>
                         <div style={{ flex: 1 }}>
                             <div
                                 style={{
@@ -237,7 +277,7 @@ function FightPage({ item }) {
                 >
                     <h3>Should the fighters get a rematch?</h3>
 
-                    <button onClick={() => setRematchVotes((prev) => prev + 1)}>
+                    <button onClick={handleRematchVote}>
                         <div style={{ flex: 1 }}>
                             <div
                                 style={{
@@ -259,7 +299,7 @@ function FightPage({ item }) {
                             margin: "0 10px",
                         }}
                     ></div>
-                    <button onClick={() => setNoRematchVotes((prev) => prev + 1)}>
+                    <button onClick={handleNoRematchVote}>
                         <div style={{ flex: 1 }}>
                             <div
                                 style={{
