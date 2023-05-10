@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
+
 const Header = () => {
     return (
         <header
@@ -63,8 +64,22 @@ const Header = () => {
                     Log In
                 </button>
                 <Link href="/allfights">
-                    <button>Fights</button>
+                    <button
+                        style={{
+                            backgroundColor: "#fff",
+                            border: "none",
+                            padding: "10px",
+                            borderRadius: "5px",
+                            cursor: "pointer",
+                            color: "#2e2e2e",
+                            fontWeight: "bold",
+                            boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
+                        }}
+                    >
+                        Fights
+                    </button>
                 </Link>
+                
             </div>
         </header>
     );
