@@ -1,12 +1,20 @@
-import { useState } from "react";
+import React from "react";
 
-export default function StarButton({ addFavourite }) {
-    const [isFilled, setIsFilled] = useState(false);
+
+export default function StarButton({ itemId }) {
+    const addToFavorites = useFavoritesStore((state) => state.addToFavorites);
+    const removeFromFavorites = useFavoritesStore(
+        (state) => state.removeFromFavorites
+    );
+    const favorites = useFavoritesStore((state) => state.favorites);
+
+    const isFilled = favorites.some((item) => item.id === itemId);
 
     const handleClick = () => {
-        setIsFilled(!isFilled);
-        if (addFavourite && !isFilled) {
-            addFavourite();
+        if (isFilled) {
+            removeFromFavorites(itemId);
+        } else {
+            addToFavorites(itemId);
         }
     };
 

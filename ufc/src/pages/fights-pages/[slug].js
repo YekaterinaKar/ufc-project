@@ -7,8 +7,8 @@ import CommonFightsCard from "../../../Components/CommonFightsCard/CommonFightsC
 import Image from "next/image";
 import FighterImage from "../../../Components/FighterImage/FighterImage";
 import Header from "../../../Components/Header/Header";
-import StarButton from "../../../Components/StarButton/StarButton";
-function FightPage() {
+
+function FightPage({ item }) {
     const router = useRouter();
     const { slug } = router.query;
 
@@ -65,16 +65,25 @@ function FightPage() {
             setComment("");
         }
     };
-     const totalVotes = fairVotes + notFairVotes;
-     const fairPercentage =
-         totalVotes === 0 ? 0 : Math.round((fairVotes / totalVotes) * 100);
-     const notFairPercentage =
-         totalVotes === 0 ? 0 : Math.round((notFairVotes / totalVotes) * 100);
+    const totalVotes = fairVotes + notFairVotes;
+    const fairPercentage =
+        totalVotes === 0 ? 0 : Math.round((fairVotes / totalVotes) * 100);
+    const notFairPercentage =
+        totalVotes === 0 ? 0 : Math.round((notFairVotes / totalVotes) * 100);
+
+        const totalRematchVotes = rematchVotes + noRematchVotes; // Total rematch votes
+        const rematchPercentage =
+            totalRematchVotes === 0
+                ? 0
+                : Math.round((rematchVotes / totalRematchVotes) * 100);
+        const noRematchPercentage =
+            totalRematchVotes === 0
+                ? 0
+                : Math.round((noRematchVotes / totalRematchVotes) * 100);
 
     if (!fight) {
         return <Image src="/Jabber.png" alt="" width={500} height={500} />;
     }
- 
 
     return (
         <div style={{ position: "relative" }}>
@@ -86,7 +95,8 @@ function FightPage() {
                         textAlign: "center",
                     }}
                 >
-                    {fight.between} <StarButton />
+                    {fight.between}{" "}
+                   
                 </h3>
                 <div
                     style={{
@@ -227,7 +237,7 @@ function FightPage() {
                 >
                     <h3>Should the fighters get a rematch?</h3>
 
-                    <button onClick={() => setFairVotes((prev) => prev + 1)}>
+                    <button onClick={() => setRematchVotes((prev) => prev + 1)}>
                         <div style={{ flex: 1 }}>
                             <div
                                 style={{
@@ -236,9 +246,9 @@ function FightPage() {
                                     marginBottom: "5px",
                                 }}
                             >
-                                {fairPercentage}%
+                                {rematchPercentage}%
                             </div>
-                            <div style={{ fontSize: "16px" }}>Fair</div>
+                            <div style={{ fontSize: "16px" }}>Rematch</div>
                         </div>
                     </button>
                     <div
@@ -249,7 +259,7 @@ function FightPage() {
                             margin: "0 10px",
                         }}
                     ></div>
-                    <button onClick={() => setNotFairVotes((prev) => prev + 1)}>
+                    <button onClick={() => setNoRematchVotes((prev) => prev + 1)}>
                         <div style={{ flex: 1 }}>
                             <div
                                 style={{
@@ -258,9 +268,9 @@ function FightPage() {
                                     marginBottom: "5px",
                                 }}
                             >
-                                {notFairPercentage}%
+                                {noRematchPercentage}%
                             </div>
-                            <div style={{ fontSize: "16px" }}>Not Fair</div>
+                            <div style={{ fontSize: "16px" }}>No Rematch</div>
                         </div>
                     </button>
                 </div>

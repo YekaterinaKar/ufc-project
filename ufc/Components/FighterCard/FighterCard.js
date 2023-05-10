@@ -13,7 +13,7 @@ export default function FighterCard({name, country, weight, image, height, ranki
     return (
         <>
             <section>
-                <StarButton onClick={addFavourite} filled={isFavourite} />
+                
                 <FighterImage image={image} />
                 <br />
                 <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>

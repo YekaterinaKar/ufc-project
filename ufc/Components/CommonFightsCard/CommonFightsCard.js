@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import FightPage from "@component/pages/fights-pages/[slug]";
-import StarButton from "../StarButton/StarButton";
+
 
 export default function CommonFightsCard({
     between,
