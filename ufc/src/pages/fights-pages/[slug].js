@@ -19,6 +19,7 @@ function FightPage() {
     const [notFairVotes, setNotFairVotes] = useState(0);
     const [rematchVotes, setRematchVotes] = useState(0);
     const [noRematchVotes, setNoRematchVotes] = useState(0);
+    
 
     useEffect(() => {
         async function fetchFight() {
@@ -173,6 +174,8 @@ function FightPage() {
     if (!fight) {
         return <Image src="/Jabber.png" alt="" width={500} height={500} />;
     }
+
+ 
 
     return (
         <div style={{ position: "relative" }}>

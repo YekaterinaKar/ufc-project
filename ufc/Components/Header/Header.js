@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 
-
 const Header = () => {
     return (
         <header
@@ -16,7 +15,25 @@ const Header = () => {
                 width: "100%",
             }}
         >
-            <div style={{ flex: 1 }} />
+            <div>
+                <Link href="/allfights">
+                    <button
+                        style={{
+                            backgroundColor: "#fff",
+                            border: "none",
+                            padding: "10px",
+                            borderRadius: "5px",
+                            cursor: "pointer",
+                            color: "#2e2e2e",
+                            fontWeight: "bold",
+                            boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
+                            marginRight: "10px",
+                        }}
+                    >
+                        Fights
+                    </button>
+                </Link>
+            </div>
 
             <h1
                 style={{
@@ -28,9 +45,7 @@ const Header = () => {
                 Female UFC Fighters
             </h1>
 
-            <div
-                style={{ display: "flex", flex: 1, justifyContent: "flex-end" }}
-            >
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
                 <Link href="/">
                     <button
                         style={{
@@ -48,22 +63,7 @@ const Header = () => {
                         Home
                     </button>
                 </Link>
-
-                <button
-                    style={{
-                        backgroundColor: "#fff",
-                        border: "none",
-                        padding: "10px",
-                        borderRadius: "5px",
-                        cursor: "pointer",
-                        color: "#2e2e2e",
-                        fontWeight: "bold",
-                        boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
-                    }}
-                >
-                    Log In
-                </button>
-                <Link href="/allfights">
+                <Link href="/auth/signin">
                     <button
                         style={{
                             backgroundColor: "#fff",
@@ -76,10 +76,9 @@ const Header = () => {
                             boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
                         }}
                     >
-                        Fights
+                        Log In
                     </button>
                 </Link>
-                
             </div>
         </header>
     );
