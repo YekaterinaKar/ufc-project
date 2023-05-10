@@ -27,8 +27,8 @@ function FightersPage() {
 console.log(fighters)
   return (
       <div>
-     <Header/>
-     <Voting/>
+     
+     
           <Image
               src="/My-Jab-Gym-Gloves-original.png"
               alt=""

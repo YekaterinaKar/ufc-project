@@ -62,6 +62,9 @@ const Header = () => {
                 >
                     Log In
                 </button>
+                <Link href="/allfights">
+                    <button>Fights</button>
+                </Link>
             </div>
         </header>
     );
