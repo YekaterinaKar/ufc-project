@@ -13,8 +13,10 @@ const fightSchema = new Schema({
     comments: { type: [String], required: false },
     fair: { type: Number, required: false },
     unfair: { type: Number, required: false },
-    rematch:{ type: Number, required: false },
-    norematch: { type: Number, required: false }
+    rematch: { type: Number, required: false },
+    norematch: { type: Number, required: false },
+    image1: { type: String, required: false },
+    image2: { type: String, required: false }
 });
 
 const Fight =
