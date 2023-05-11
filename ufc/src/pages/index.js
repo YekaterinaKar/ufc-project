@@ -94,7 +94,7 @@ function Home() {
                 alt="boxing-gloves"
                 height={150}
                 width={150}
-                style={{ position: "absolute", marginTop: "100px", marginLeft: "770px"}}
+                style={{ position: "absolute", marginTop: "90px", marginLeft: "770px"}}
                 
             />
             <SearchBar

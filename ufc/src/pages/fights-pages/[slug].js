@@ -185,6 +185,7 @@ function FightPage() {
                         fontSize: "36px",
                         marginBottom: "10px",
                         textAlign: "center",
+                        color: "#2e2e2e",
                     }}
                 >
                     {fight.between}{" "}
@@ -235,175 +236,188 @@ function FightPage() {
                     width={250}
                     height={375}
                 />
-
-                <h2>Leave a comment</h2>
-                <textarea
-                    style={{
-                        padding: "10px",
-                        marginBottom: "20px",
-                        width: "100%",
-                        minHeight: "100px",
-                        resize: "none",
-                    }}
-                    aria-label="Leave a comment"
-                    value={comment}
-                    onChange={handleCommentChange}
-                ></textarea>
-                <button
-                    style={{
-                        backgroundColor: "#2e2e2e",
-                        color: "white",
-                        padding: "10px 10px",
-                        borderRadius: "5px",
-                        fontWeight: "bold",
-                        fontSize: "15px",
-                        marginRight: "7px"
-                    }}
-                    onClick={handleSubmit}
-                >
-                    Submit
-                </button>
-                <button
-                    style={{
-                        backgroundColor: "#2e2e2e",
-                        color: "white",
-                        padding: "10px 10px",
-                        borderRadius: "5px",
-                        fontWeight: "bold",
-                        fontSize: "15px",
-                    }}
-                    onClick={handleBackClick}
-                >
-                    Back
-                </button>
-                <section>
-                    <ul style={{ listStyle: "none" }}>
-                        {fight.comments?.map((comment, index) => {
-                            return (
-                                <li
-                                    key={index}
-                                    style={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        gap: "10px",
-                                        padding: "10px",
-                                        margin: "10px 0",
-                                        backgroundColor: "#F5F5F5",
-                                        borderRadius: "5px",
-                                        boxShadow: "0 0 5px rgba(0, 0, 0, 0.1)",
-                                        position: "relative",
-                                    }}
-                                >
-                                    {comment}
-                                    <button
+                <div>
+                    <h2 style={{ color: "#2e2e2e" }}>Leave a comment</h2>
+                    <textarea
+                        style={{
+                            padding: "10px",
+                            marginBottom: "20px",
+                            width: "635px",
+                            minHeight: "70px",
+                            resize: "none",
+                        }}
+                        aria-label="Leave a comment"
+                        value={comment}
+                        onChange={handleCommentChange}
+                    ></textarea>
+                    <br></br>
+                    <button
+                        style={{
+                            backgroundColor: "#2e2e2e",
+                            color: "papayawhip",
+                            padding: "12px 12px",
+                            borderRadius: "5px",
+                            fontWeight: "bold",
+                            fontSize: "15px",
+                            marginRight: "7px",
+                        }}
+                        onClick={handleSubmit}
+                    >
+                        Submit
+                    </button>
+                    <button
+                        style={{
+                            backgroundColor: "#2e2e2e",
+                            color: "papayawhip",
+                            padding: "12px 12px",
+                            borderRadius: "5px",
+                            fontWeight: "bold",
+                            fontSize: "15px",
+                        }}
+                        onClick={handleBackClick}
+                    >
+                        Back
+                    </button>
+                    <section>
+                        <ul style={{ listStyle: "none" }}>
+                            {fight.comments?.map((comment, index) => {
+                                return (
+                                    <li
+                                        key={index}
                                         style={{
-                                            position: "absolute",
-                                            top: "5px",
-                                            right: "5px",
-                                            backgroundColor: "transparent",
-                                            border: "none",
-                                            cursor: "pointer",
+                                            display: "flex",
+                                            alignSelf: "flex-start",
+
+                                            padding: "10px",
+                                            marginLeft: "-40px",
+                                            marginBottom: "10px",
+                                            backgroundColor: "#F5F5F5",
+                                            borderRadius: "5px",
+                                            boxShadow:
+                                                "0 0 5px rgba(0, 0, 0, 0.1)",
+                                            position: "relative",
+                                            width: "640px",
                                         }}
                                     >
-                                        x
-                                    </button>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </section>
+                                        {comment}
+                                        <button
+                                            style={{
+                                                position: "absolute",
+                                                top: "5px",
+                                                right: "5px",
+                                                backgroundColor: "transparent",
+                                                border: "none",
+                                                cursor: "pointer",
+                                            }}
+                                        >
+                                            x
+                                        </button>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </section>
+                    <section >
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                marginBottom: "10px",
+                                
+                            }}
+                        >
+                            <h3>Do you think the fight was judged fair?</h3>
 
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginBottom: "10px",
-                    }}
-                >
-                    <h3>Do you think the fight was judged fair?</h3>
+                            <button onClick={handleFairVote}>
+                                <div style={{ flex: 1 }}>
+                                    <div
+                                        style={{
+                                            fontSize: "24px",
+                                            fontWeight: "bold",
+                                            marginBottom: "5px",
+                                        }}
+                                    >
+                                        {fairPercentage}%
+                                    </div>
+                                    <div style={{ fontSize: "16px" }}>Fair</div>
+                                </div>
+                            </button>
+                            <div
+                                style={{
+                                    height: "50px",
+                                    width: "5px",
+                                    backgroundColor: "black",
+                                    margin: "0 10px",
+                                }}
+                            ></div>
+                            <button onClick={handleNotFairVote}>
+                                <div style={{ flex: 1 }}>
+                                    <div
+                                        style={{
+                                            fontSize: "24px",
+                                            fontWeight: "bold",
+                                            marginBottom: "5px",
+                                        }}
+                                    >
+                                        {notFairPercentage}%
+                                    </div>
+                                    <div style={{ fontSize: "16px" }}>
+                                        Not Fair
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                marginBottom: "10px",
+                            }}
+                        >
+                            <h3>Should the fighters get a rematch?</h3>
 
-                    <button onClick={handleFairVote}>
-                        <div style={{ flex: 1 }}>
+                            <button onClick={handleRematchVote}>
+                                <div style={{ flex: 1 }}>
+                                    <div
+                                        style={{
+                                            fontSize: "24px",
+                                            fontWeight: "bold",
+                                            marginBottom: "5px",
+                                        }}
+                                    >
+                                        {rematchPercentage}%
+                                    </div>
+                                    <div style={{ fontSize: "16px" }}>
+                                        Rematch
+                                    </div>
+                                </div>
+                            </button>
                             <div
                                 style={{
-                                    fontSize: "24px",
-                                    fontWeight: "bold",
-                                    marginBottom: "5px",
+                                    height: "50px",
+                                    width: "5px",
+                                    backgroundColor: "black",
+                                    margin: "0 10px",
                                 }}
-                            >
-                                {fairPercentage}%
-                            </div>
-                            <div style={{ fontSize: "16px" }}>Fair</div>
+                            ></div>
+                            <button onClick={handleNoRematchVote}>
+                                <div style={{ flex: 1 }}>
+                                    <div
+                                        style={{
+                                            fontSize: "24px",
+                                            fontWeight: "bold",
+                                            marginBottom: "5px",
+                                        }}
+                                    >
+                                        {noRematchPercentage}%
+                                    </div>
+                                    <div style={{ fontSize: "16px" }}>
+                                        No Rematch
+                                    </div>
+                                </div>
+                            </button>
                         </div>
-                    </button>
-                    <div
-                        style={{
-                            height: "50px",
-                            width: "5px",
-                            backgroundColor: "black",
-                            margin: "0 10px",
-                        }}
-                    ></div>
-                    <button onClick={handleNotFairVote}>
-                        <div style={{ flex: 1 }}>
-                            <div
-                                style={{
-                                    fontSize: "24px",
-                                    fontWeight: "bold",
-                                    marginBottom: "5px",
-                                }}
-                            >
-                                {notFairPercentage}%
-                            </div>
-                            <div style={{ fontSize: "16px" }}>Not Fair</div>
-                        </div>
-                    </button>
-                </div>
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginBottom: "10px",
-                    }}
-                >
-                    <h3>Should the fighters get a rematch?</h3>
-
-                    <button onClick={handleRematchVote}>
-                        <div style={{ flex: 1 }}>
-                            <div
-                                style={{
-                                    fontSize: "24px",
-                                    fontWeight: "bold",
-                                    marginBottom: "5px",
-                                }}
-                            >
-                                {rematchPercentage}%
-                            </div>
-                            <div style={{ fontSize: "16px" }}>Rematch</div>
-                        </div>
-                    </button>
-                    <div
-                        style={{
-                            height: "50px",
-                            width: "5px",
-                            backgroundColor: "black",
-                            margin: "0 10px",
-                        }}
-                    ></div>
-                    <button onClick={handleNoRematchVote}>
-                        <div style={{ flex: 1 }}>
-                            <div
-                                style={{
-                                    fontSize: "24px",
-                                    fontWeight: "bold",
-                                    marginBottom: "5px",
-                                }}
-                            >
-                                {noRematchPercentage}%
-                            </div>
-                            <div style={{ fontSize: "16px" }}>No Rematch</div>
-                        </div>
-                    </button>
+                    </section>
                 </div>
             </div>
         </div>
