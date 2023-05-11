@@ -64,7 +64,7 @@ export default function AllFight() {
                     style={{
                         marginBottom: "20px",
                         marginTop: "20px",
-                        width: "400px",
+                        width: "350px",
                         padding: "9px",
                         fontSize: "16px",
                         borderRadius: "5px",

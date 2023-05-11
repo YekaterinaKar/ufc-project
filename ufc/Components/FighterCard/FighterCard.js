@@ -22,7 +22,7 @@ export default function FighterCard({name, country, weight, image, height, ranki
                         {name}
                     </li>
 
-                    <li style={{ marginTop: "10px" }}>Age: {dob} </li>
+                   
 
                     <li style={{ marginTop: "10px" }}>Country: {country} </li>
 

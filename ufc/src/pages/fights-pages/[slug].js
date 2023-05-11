@@ -213,7 +213,7 @@ function FightPage() {
                         margin: "20px",
                         borderRadius: "10px",
                     }}
-                    src={fight.image1}
+                    src={fight.image2}
                     alt="fighter_image"
                     width={250}
                     height={375}
@@ -231,7 +231,7 @@ function FightPage() {
                         margin: "20px",
                         borderRadius: "10px",
                     }}
-                    src={fight.image2}
+                    src={fight.image1}
                     alt="fighter_image"
                     width={250}
                     height={375}
