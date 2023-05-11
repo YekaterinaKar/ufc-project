@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-
 export default function FightCard({
     between,
     win,
@@ -10,15 +9,11 @@ export default function FightCard({
     time,
     by,
     id,
-   
 }) {
-   
-
     return (
         <>
-            {(
-                <div style={{ display: "flex" }}>
-                   
+            {
+                <div style={{ display: "flex", flexDirection: "row" }}>
                     <section
                         style={{
                             backgroundColor: "#fff",
@@ -26,11 +21,12 @@ export default function FightCard({
                             borderRadius: "10px",
                             boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
                             textAlign: "center",
-                            margin: "10px", 
-                            
+                            margin: "10px",
+                            width: "180px",
+                            height: "180px"
+                           
                         }}
                     >
-                       
                         <ul
                             style={{
                                 listStyle: "none",
@@ -45,22 +41,17 @@ export default function FightCard({
                                     {between}
                                 </Link>
                             </li>
-
                             <li style={{ marginTop: "10px" }}>win: {win}</li>
-
                             <li style={{ marginTop: "10px" }}>date: {date}</li>
-
                             <li style={{ marginTop: "10px" }}>
                                 rounds: {rounds}
                             </li>
-
                             <li style={{ marginTop: "10px" }}>time: {time}</li>
-
                             <li style={{ marginTop: "10px" }}>by: {by}</li>
                         </ul>
                     </section>
                 </div>
-            )}
+            }
         </>
     );
 }

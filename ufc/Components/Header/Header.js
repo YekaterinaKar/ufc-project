@@ -15,25 +15,7 @@ const Header = () => {
                 width: "100%",
             }}
         >
-            <div>
-                <Link href="/allfights">
-                    <button
-                        style={{
-                            backgroundColor: "#fff",
-                            border: "none",
-                            padding: "10px",
-                            borderRadius: "5px",
-                            cursor: "pointer",
-                            color: "#2e2e2e",
-                            fontWeight: "bold",
-                            boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
-                            marginRight: "10px",
-                        }}
-                    >
-                        Fights
-                    </button>
-                </Link>
-            </div>
+           
 
             <h1
                 style={{
@@ -63,7 +45,7 @@ const Header = () => {
                         Home
                     </button>
                 </Link>
-                <Link href="/auth/signin">
+                <Link href="/allfights">
                     <button
                         style={{
                             backgroundColor: "#fff",
@@ -76,7 +58,7 @@ const Header = () => {
                             boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
                         }}
                     >
-                        Log In
+                        Fights
                     </button>
                 </Link>
             </div>

@@ -180,7 +180,7 @@ function FightPage() {
     return (
         <div style={{ position: "relative" }}>
             <div style={{ padding: "20px" }}>
-                <h3
+                <p
                     style={{
                         fontSize: "36px",
                         marginBottom: "10px",
@@ -188,7 +188,7 @@ function FightPage() {
                     }}
                 >
                     {fight.between}{" "}
-                </h3>
+                </p>
                 <div
                     style={{
                         position: "absolute",
@@ -199,6 +199,42 @@ function FightPage() {
                 ></div>
 
                 <Video video={fight.video} />
+
+                <Image
+                    style={{
+                        position: "fixed",
+                        top: "50%",
+                        right: "20px",
+                        transform: "translate(0,-50%)",
+                        display: "inline-block",
+
+                        padding: "20px",
+                        margin: "20px",
+                        borderRadius: "10px",
+                    }}
+                    src={fight.image1}
+                    alt="fighter_image"
+                    width={250}
+                    height={375}
+                />
+
+                <Image
+                    style={{
+                        position: "fixed",
+                        top: "50%",
+                        left: "20px",
+                        transform: "translate(0,-50%)",
+                        display: "inline-block",
+
+                        padding: "20px",
+                        margin: "20px",
+                        borderRadius: "10px",
+                    }}
+                    src={fight.image2}
+                    alt="fighter_image"
+                    width={250}
+                    height={375}
+                />
 
                 <h2>Leave a comment</h2>
                 <textarea
@@ -215,11 +251,13 @@ function FightPage() {
                 ></textarea>
                 <button
                     style={{
-                        backgroundColor: "grey",
+                        backgroundColor: "#2e2e2e",
                         color: "white",
-                        padding: "10px 20px",
+                        padding: "10px 10px",
                         borderRadius: "5px",
-                        marginRight: "10px",
+                        fontWeight: "bold",
+                        fontSize: "15px",
+                        marginRight: "7px"
                     }}
                     onClick={handleSubmit}
                 >
@@ -227,10 +265,12 @@ function FightPage() {
                 </button>
                 <button
                     style={{
-                        backgroundColor: "grey",
+                        backgroundColor: "#2e2e2e",
                         color: "white",
-                        padding: "10px 20px",
+                        padding: "10px 10px",
                         borderRadius: "5px",
+                        fontWeight: "bold",
+                        fontSize: "15px",
                     }}
                     onClick={handleBackClick}
                 >
