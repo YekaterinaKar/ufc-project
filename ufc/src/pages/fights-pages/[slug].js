@@ -172,7 +172,7 @@ function FightPage() {
     };
 
     if (!fight) {
-        return <Image src="/Jabber.png" alt="" width={500} height={500} />;
+        return <Image src="/My-Jab-Gym-Gloves-original.png" alt="" width={500} height={500} />;
     }
 
  

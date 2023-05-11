@@ -13,15 +13,16 @@ const Header = () => {
                 color: "#fff",
                 boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
                 width: "100%",
+                height: "60px",
             }}
         >
-           
-
             <h1
                 style={{
                     textAlign: "center",
-                    flex: 1,
-                    margin: "0 auto",
+
+                    marginLeft: "600px",
+                    color: "papayawhip",
+                    fontSize: "40px",
                 }}
             >
                 Female UFC Fighters
@@ -31,13 +32,14 @@ const Header = () => {
                 <Link href="/">
                     <button
                         style={{
-                            backgroundColor: "#fff",
+                            backgroundColor: "papayawhip",
                             border: "none",
-                            padding: "10px",
+                            padding: "12px",
                             borderRadius: "5px",
                             cursor: "pointer",
                             color: "#2e2e2e",
                             fontWeight: "bold",
+                            fontSize: "20px",
                             boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
                             marginRight: "10px",
                         }}
@@ -48,20 +50,28 @@ const Header = () => {
                 <Link href="/allfights">
                     <button
                         style={{
-                            backgroundColor: "#fff",
+                            backgroundColor: "papayawhip",
                             border: "none",
-                            padding: "10px",
+                            padding: "12px",
+                            fontSize: "20px",
                             borderRadius: "5px",
                             cursor: "pointer",
                             color: "#2e2e2e",
                             fontWeight: "bold",
                             boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
+                            marginLeft: "15px",
+                            marginRight: "15px",
                         }}
                     >
                         Fights
                     </button>
                 </Link>
             </div>
+            <style jsx>{`
+                button:hover {
+                    color: papayawhip;
+                }
+            `}</style>
         </header>
     );
 };

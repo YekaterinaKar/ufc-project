@@ -89,9 +89,19 @@ function Home() {
 
     return (
         <>
-            <SearchBar setMatchingFighter={setMatchingFighter} />
+            <Image
+                src="/My-Jab-Gym-Gloves-original.png"
+                alt="boxing-gloves"
+                height={150}
+                width={150}
+                style={{ position: "absolute", marginTop: "100px", marginLeft: "770px"}}
+                
+            />
+            <SearchBar
+                
+                setMatchingFighter={setMatchingFighter}
+            />
             <Map setSelectedFighter={setSelectedFighter} />
-             
 
             {commonFights?.length > 0 && !isSameFighter ? (
                 <div>
@@ -110,7 +120,6 @@ function Home() {
                     ))}
                 </div>
             ) : null}
-            
 
             {selectedFighter && (
                 <div
@@ -133,7 +142,7 @@ function Home() {
                     <FighterCard
                         image={selectedFighter.image}
                         name={selectedFighter.name}
-                        dob = {selectedFighter.DOB}
+                        dob={selectedFighter.DOB}
                         country={selectedFighter.country}
                         record={selectedFighter.record}
                         weight={selectedFighter.weight}

@@ -16,15 +16,14 @@ export default function FightCard({
                 <div style={{ display: "flex", flexDirection: "row" }}>
                     <section
                         style={{
-                            backgroundColor: "#fff",
+                            backgroundColor: "#fffaf2",
                             padding: "20px",
                             borderRadius: "10px",
                             boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
                             textAlign: "center",
                             margin: "10px",
                             width: "180px",
-                            height: "180px"
-                           
+                            height: "180px",
                         }}
                     >
                         <ul

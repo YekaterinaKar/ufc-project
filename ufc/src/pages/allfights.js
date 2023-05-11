@@ -45,14 +45,15 @@ export default function AllFight() {
                 style={{
                     position: "fixed",
                     top: "50%",
-                    right: "20px",
+                    right: "1px",
                     transform: "translate(0,-50%)",
                     display: "inline-block",
                     width: "500px",
                     height: "500px",
-                    padding: "20px",
-                    margin: "20px",
+                    padding: "10px",
+                    margin: "10px",
                     borderRadius: "10px",
+                    marginTop: "100px",
                 }}
             />
             <form onSubmit={handleSearchSubmit}>
@@ -62,18 +63,21 @@ export default function AllFight() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     style={{
                         marginBottom: "20px",
-                        padding: "10px",
+                        marginTop: "20px",
+                        width: "400px",
+                        padding: "9px",
                         fontSize: "16px",
                         borderRadius: "5px",
-                        border: "1px solid #ccc",
+                        border: "2px solid #2e2e2e",
                         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                        background: "#fffaf2",
                     }}
                 />
                 <button
                     type="submit"
                     style={{
-                        padding: "10px 20px",
-                        fontSize: "16px",
+                        padding: "10px 10px",
+                        fontSize: "20px",
                         borderRadius: "5px",
                         background: "#2e2e2e",
                         color: "white",
@@ -82,6 +86,7 @@ export default function AllFight() {
                         marginRight: "10px",
                         marginLeft: "10px",
                         marginTop: "10px",
+                        color: "papayawhip",
                     }}
                 >
                     Search
@@ -91,12 +96,13 @@ export default function AllFight() {
                     onClick={handleSearchReset}
                     style={{
                         padding: "10px 20px",
-                        fontSize: "16px",
+                        fontSize: "20px",
                         borderRadius: "5px",
                         background: "#2e2e2e",
                         color: "white",
                         border: "none",
                         cursor: "pointer",
+                        color: "papayawhip",
                     }}
                 >
                     All
@@ -110,7 +116,7 @@ export default function AllFight() {
                     width: "75%",
                     alignSelf: "flex-start",
                     marginTop: "50px",
-                    marginLeft: "50px"
+                    marginLeft: "50px",
                 }}
             >
                 {filteredFights.map((fight) => (
@@ -131,3 +137,4 @@ export default function AllFight() {
         </>
     );
 }
+

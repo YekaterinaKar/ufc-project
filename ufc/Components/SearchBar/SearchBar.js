@@ -58,7 +58,7 @@ export default function SearchBar({setMatchingFighter}) {
                         fontSize: "18px",
                         width: "400px",
                         marginRight: "10px",
-                        backgroundColor: "#dfeefa",
+                        backgroundColor: "papayawhip",
                         marginTop: "25px",
                     }}
                     type="text"
@@ -70,7 +70,7 @@ export default function SearchBar({setMatchingFighter}) {
                         padding: "19px",
                         border: "black, 1px, solid",
                         borderRadius: "30px",
-                        backgroundColor: "#dfeefa",
+                        backgroundColor: "papayawhip",
                         marginLeft: "10px",
                         marginTop: "25px",
                     }}
