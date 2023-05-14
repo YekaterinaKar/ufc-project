@@ -1,5 +1,5 @@
 body {
-  background-color:#dfeefa ;
+  background-color:papayawhip ;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 button[data-fighter-id] {
@@ -15,17 +15,3 @@ button[data-fighter-id] {
 
 
 
-.lightning {
-  position: relative;
-  display: inline-block;
-  animation: lightning 0.2s ease-out infinite;
-}
-
-@keyframes lightning {
-  0% {
-    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #f7c08a, 0 0 30px #f7c08a, 0 0 40px #f7c08a, 0 0 55px #f7c08a, 0 0 75px #f7c08a;
-  }
-  100% {
-    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #f7c08a, 0 0 30px #f7c08a, 0 0 40px #f7c08a, 0 0 55px #f7c08a, 0 0 75px transparent;
-  }
-}

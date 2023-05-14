@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import FightPage from "@component/pages/fights-pages/[slug]";
+
 
 export default function CommonFightsCard({
     between,
@@ -7,6 +10,7 @@ export default function CommonFightsCard({
     rounds,
     time,
     by,
+    id,
     setFights,
     foundObject,
 }) {
@@ -16,7 +20,8 @@ export default function CommonFightsCard({
         setIsVisible(false);
     };
 
- 
+  
+
     return (
         <>
             {isVisible && (
@@ -47,12 +52,14 @@ export default function CommonFightsCard({
                     >
                         X
                     </button>
+                    
                     <br></br>
+                    
                     <ul
                         style={{ listStyle: "none", padding: "0", margin: "0" }}
                     >
                         <li style={{ fontWeight: "bold", fontSize: "20px" }}>
-                            {between}
+                            <Link href={`/fights-pages/${id}`}>{between}</Link>
                         </li>
 
                         <li style={{ marginTop: "10px" }}>win: {win}</li>

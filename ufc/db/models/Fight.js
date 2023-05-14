@@ -9,6 +9,14 @@ const fightSchema = new Schema({
     rounds: { type: Number, required: false },
     time: { type: String, required: false },
     by: { type: String, required: false },
+    video: { type: String, required: false },
+    comments: { type: [String], required: false },
+    fair: { type: Number, required: false },
+    unfair: { type: Number, required: false },
+    rematch: { type: Number, required: false },
+    norematch: { type: Number, required: false },
+    image1: { type: String, required: false },
+    image2: { type: String, required: false }
 });
 
 const Fight =

@@ -1,24 +1,29 @@
 import FighterImage from "../FighterImage/FighterImage";
+import StarButton from "../StarButton/StarButton";
+import { useState } from "react";
 
 
+export default function FighterCard({name, country, weight, image, height, ranking,  record, dob}) {
 
-export default function FighterCard({name, country, weight, image, height, ranking,  record, fights}) {
-
-    //const foundObject = fights.find((fight) => fight.id === "A");
- 
-
+   
+ const [isFavourite, setIsFavourite] = useState(false);
+ const addFavourite = () => {
+     setIsFavourite(true);
+ };
     return (
         <>
-            <section
+            <section>
                 
-            >
-                 
                 <FighterImage image={image} />
                 <br />
                 <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
-                    <li style={{ fontWeight: "bold", fontSize: "20px"}}> {name}</li>
+                    <li style={{ fontWeight: "bold", fontSize: "20px" }}>
+                        {" "}
+                        {name}
+                    </li>
 
-                    
+                   
+
                     <li style={{ marginTop: "10px" }}>Country: {country} </li>
 
                     <li style={{ marginTop: "10px" }}>
@@ -30,8 +35,6 @@ export default function FighterCard({name, country, weight, image, height, ranki
                     <li style={{ marginTop: "10px" }}>Ranking: {ranking} </li>
 
                     <li style={{ marginTop: "10px" }}>Record:{record} </li>
-
-                    
                 </ul>
             </section>
         </>

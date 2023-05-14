@@ -1,12 +1,12 @@
 import "@component/styles/globals.css";
+import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr";
-
+import Header from "../../Components/Header/Header";
 
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-export default function App({ Component, pageProps }) {
-    
+export default function App({ Component, pageProps: { session, ...pageProps } }) {
     return (
         <div
             style={{
@@ -16,8 +16,10 @@ export default function App({ Component, pageProps }) {
             }}
         >
             <SWRConfig value={{ fetcher }}>
-                <Component {...pageProps} />
-             
+                <Header />
+                <SessionProvider session={session}>
+                    <Component {...pageProps} />
+                </SessionProvider>
             </SWRConfig>
         </div>
     );
