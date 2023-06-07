@@ -7,7 +7,7 @@ import FighterCard from "../FighterCard/FighterCard";
 const Map = ({setSelectedFighter}) => {
     const [fighterLocations, setFighterLocations] = useState([]); // state updating coordinates
    
-     
+     // ref to use js, eventListener
     const ref = useRef(null);
 
     // useEffect fetching marker`s coordinates from DB
